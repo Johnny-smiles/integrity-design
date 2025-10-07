@@ -33,15 +33,20 @@ export default defineNuxtConfig({
                 /* Open Graph */
                 { property: 'og:title',       content: 'Integrity Design + Build — Renovations Designed Around Your Life' },
                 { property: 'og:description', content: 'Integrity Design + Build is a Twin Cities remodeling company specializing in kitchens, bathrooms, basements, and full-home renovations that elevate comfort and style.' },
-                { property: 'og:image',       content: 'https://integritydesignmn.com/images/kitchen-remodel.svg' },
+                { property: 'og:image',       content: 'https://integritydesignmn.com/logo.png' },
+                { property: 'og:image:width', content: '400' },
+                { property: 'og:image:height', content: '400' },
+                { property: 'og:image:alt',    content: 'Integrity Design + Build Logo' },
                 { property: 'og:url',         content: 'https://integritydesignmn.com' },
                 { property: 'og:type',        content: 'website' },
+                { property: 'og:site_name',   content: 'Integrity Design + Build' },
 
                 /* Twitter */
                 { name: 'twitter:card',        content: 'summary_large_image' },
                 { name: 'twitter:title',       content: 'Integrity Design + Build — Renovations Designed Around Your Life' },
                 { name: 'twitter:description', content: 'Integrity Design + Build is a Twin Cities remodeling company specializing in kitchens, bathrooms, basements, and full-home renovations that elevate comfort and style.' },
-                { name: 'twitter:image',       content: 'https://integritydesignmn.com/images/kitchen-remodel.svg' }
+                { name: 'twitter:image',       content: 'https://integritydesignmn.com/logo.png' },
+                { name: 'twitter:image:alt',   content: 'Integrity Design + Build Logo' }
             ],
             link: [
                 { rel: 'canonical', href: 'https://integritydesignmn.com' },
@@ -54,8 +59,10 @@ export default defineNuxtConfig({
                     href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap'
                 },
 
-                // Favicon
-                { rel: 'icon', type: 'image/png', href: '/favicon.png' }
+                // Favicon and Icons
+                { rel: 'icon', type: 'image/png', href: '/favicon.png' },
+                { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+                { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' }
             ],
             script: [
                 /* Plausible Analytics (new domain) */
