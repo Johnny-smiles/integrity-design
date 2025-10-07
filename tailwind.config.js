@@ -16,14 +16,14 @@ export default {
     theme: {
         extend: {
             colors: {
-                'brand-dark':    '#0b2b2e', // deep slate (text)
-                'brand-primary': '#0f8f93', // teal (left gradient)
-                'brand-primary-2':'#60c3cb', // teal-light (right gradient)
-                'brand-accent':  '#ffd166', // amber accent
-                'brand-light':   '#f5f7f9', // page background
+                'brand-dark':    '#1a1a1a', // charcoal text
+                'brand-primary': '#1a1a1a', // primary brand tone
+                'brand-primary-2':'#f5c211', // gradient highlight
+                'brand-accent':  '#eab308', // golden accent
+                'brand-light':   '#fafafa', // soft background
             },
             fontFamily: {
-                heading: ['Montserrat', 'sans-serif'],
+                heading: ['\"Playfair Display\"', 'serif'],
                 body: ['Inter', 'system-ui', 'sans-serif'],
             },
             container: { center: true, padding: '1.5rem' },
@@ -54,7 +54,7 @@ export default {
                     MozOsxFontSmoothing: 'grayscale',
                 },
                 'h1,h2,h3,h4,h5,h6': {
-                    fontFamily: toStack(heading, 'Montserrat,sans-serif'),
+                    fontFamily: toStack(heading, 'Playfair Display,serif'),
                     lineHeight: '1.2',
                     fontWeight: '700',
                 },

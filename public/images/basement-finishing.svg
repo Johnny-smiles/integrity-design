@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="baseTitle baseDesc">
+  <title id="baseTitle">Stylized basement finishing illustration</title>
+  <desc id="baseDesc">Minimal illustration of a finished basement with lounge seating, media wall, and storage using Integrity Design + Build brand colors.</desc>
+  <rect width="1200" height="800" rx="48" fill="#fafafa"/>
+  <rect x="100" y="180" width="1000" height="480" rx="32" fill="#ffffff" stroke="#e5e7eb" stroke-width="4"/>
+  <rect x="160" y="240" width="320" height="360" rx="28" fill="#1a1a1a" opacity="0.85"/>
+  <rect x="180" y="260" width="280" height="140" rx="20" fill="#f5f5f5"/>
+  <rect x="220" y="290" width="200" height="80" rx="16" fill="#1a1a1a"/>
+  <rect x="520" y="260" width="520" height="200" rx="28" fill="#1a1a1a"/>
+  <rect x="560" y="300" width="440" height="120" rx="20" fill="#ffffff"/>
+  <rect x="520" y="500" width="520" height="120" rx="40" fill="#1a1a1a" opacity="0.9"/>
+  <rect x="560" y="520" width="200" height="80" rx="24" fill="#f5c211"/>
+  <rect x="780" y="520" width="200" height="80" rx="24" fill="#f5c211" opacity="0.8"/>
+  <circle cx="620" cy="360" r="12" fill="#f5c211"/>
+  <circle cx="660" cy="360" r="12" fill="#f5c211"/>
+  <circle cx="700" cy="360" r="12" fill="#f5c211"/>
+  <circle cx="740" cy="360" r="12" fill="#f5c211"/>
+  <path d="M260 600h200" stroke="#f5c211" stroke-width="18" stroke-linecap="round"/>
+  <rect x="300" y="500" width="160" height="60" rx="20" fill="#1a1a1a"/>
+  <rect x="320" y="520" width="120" height="20" rx="8" fill="#ffffff"/>
+  <rect x="420" y="420" width="40" height="100" rx="16" fill="#f5c211"/>
+  <rect x="360" y="420" width="40" height="100" rx="16" fill="#f5c211" opacity="0.8"/>
+</svg>

@@ -1,5 +1,6 @@
 {
-  "name": "my-electrician",
+  "name": "integrity-design-build",
+  "description": "Marketing site for Integrity Design + Build, a Twin Cities remodeling company.",
   "private": true,
   "type": "module",
   "scripts": {
@@ -16,8 +17,8 @@
     "@nuxt/scripts": "^0.11.5",
     "@nuxtjs/sitemap": "^7.2.10",
     "@unhead/vue": "^2.0.5",
+    "ipx": "^3.1.1",
     "nuxt": "^3.16.2",
-    "swiper": "^11.2.10",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
   },

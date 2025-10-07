@@ -17,7 +17,7 @@
         </a>
       </div>
       <div class="flex items-center gap-4">
-        <NuxtLink to="/contact" class="btn-accent text-sm">Request Estimate</NuxtLink>
+        <NuxtLink to="/contact" class="btn-accent text-sm text-brand-dark">Plan Consultation</NuxtLink>
         <div class="flex gap-2">
           <a v-if="siteConfig.social?.facebook" :href="siteConfig.social.facebook" target="_blank" rel="noopener" class="hover:text-white/80">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

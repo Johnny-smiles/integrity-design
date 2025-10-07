@@ -1,8 +1,8 @@
 <template>
     <section class="bg-white py-20">
         <div class="max-w-7xl mx-auto px-6">
-            <!-- four-wide grid on lg, two-wide on md, single on mobile -->
-            <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+            <!-- three-wide grid on lg, two-wide on md, single on mobile -->
+            <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
                 <div v-for="service in homepageServices" :key="service.slug">
                     <NuxtLink :to="`/services/${service.slug}`">
                         <ServiceCardSimple
@@ -20,6 +20,6 @@
 import ServiceCardSimple from '~/components/ServiceCardSimple.vue'
 import { services } from '~/data/services'
 
-// Show first 4 services on homepage
-const homepageServices = services.slice(0, 4)
+// Show first 3 services on homepage
+const homepageServices = services.slice(0, 3)
 </script>

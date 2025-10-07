@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="bathTitle bathDesc">
+  <title id="bathTitle">Stylized bathroom illustration</title>
+  <desc id="bathDesc">Minimal illustration of a spa bathroom with vanity, soaking tub, and lighting using Integrity Design + Build brand palette.</desc>
+  <rect width="1200" height="800" rx="48" fill="#fafafa"/>
+  <rect x="120" y="160" width="960" height="480" rx="32" fill="#ffffff" stroke="#e5e7eb" stroke-width="4"/>
+  <rect x="180" y="220" width="300" height="360" rx="28" fill="#1a1a1a" opacity="0.85"/>
+  <rect x="220" y="260" width="220" height="140" rx="20" fill="#ffffff"/>
+  <rect x="220" y="430" width="220" height="120" rx="20" fill="#f5f5f5"/>
+  <circle cx="260" cy="320" r="16" fill="#f5c211"/>
+  <circle cx="400" cy="320" r="16" fill="#f5c211"/>
+  <rect x="540" y="300" width="480" height="200" rx="60" fill="#1a1a1a" opacity="0.9"/>
+  <rect x="590" y="340" width="380" height="120" rx="50" fill="#ffffff"/>
+  <rect x="620" y="520" width="320" height="60" rx="24" fill="#f5c211"/>
+  <rect x="660" y="180" width="40" height="120" rx="20" fill="#1a1a1a"/>
+  <rect x="740" y="180" width="40" height="120" rx="20" fill="#1a1a1a"/>
+  <rect x="820" y="180" width="40" height="120" rx="20" fill="#1a1a1a"/>
+  <path d="M660 180c0-40 34-72 76-72s76 32 76 72" stroke="#1a1a1a" stroke-width="10" fill="none" stroke-linecap="round"/>
+  <rect x="240" y="570" width="240" height="40" rx="16" fill="#f5c211"/>
+  <rect x="520" y="570" width="180" height="40" rx="16" fill="#f5c211" opacity="0.85"/>
+  <rect x="740" y="570" width="220" height="40" rx="16" fill="#f5c211" opacity="0.7"/>
+</svg>

@@ -20,38 +20,38 @@ export default defineNuxtConfig({
     app: {
         head: {
             htmlAttrs: { lang: 'en' },
-            title: '{{SITE_NAME}} — {{HERO_HEADLINE}}',
+            title: 'Integrity Design + Build — Renovations Designed Around Your Life',
             meta: [
                 { charset: 'utf-8' },
                 { name: 'viewport', content: 'width=device-width, initial-scale=1' },
                 {
                     name: 'description',
-                    content: '{{SITE_DESCRIPTION}}'
+                    content: 'Integrity Design + Build is a Twin Cities remodeling company specializing in kitchens, bathrooms, basements, and full-home renovations that elevate comfort and style.'
                 },
                 { name: 'robots', content: 'index, follow' },
 
                 /* Open Graph */
-                { property: 'og:title',       content: '{{SITE_NAME}} — {{HERO_HEADLINE}}' },
-                { property: 'og:description', content: '{{SITE_DESCRIPTION}}' },
-                { property: 'og:image',       content: '{{SITE_DOMAIN}}/logo.png' },
-                { property: 'og:url',         content: '{{SITE_DOMAIN}}' },
+                { property: 'og:title',       content: 'Integrity Design + Build — Renovations Designed Around Your Life' },
+                { property: 'og:description', content: 'Integrity Design + Build is a Twin Cities remodeling company specializing in kitchens, bathrooms, basements, and full-home renovations that elevate comfort and style.' },
+                { property: 'og:image',       content: 'https://integritydesignmn.com/images/kitchen-remodel.svg' },
+                { property: 'og:url',         content: 'https://integritydesignmn.com' },
                 { property: 'og:type',        content: 'website' },
 
                 /* Twitter */
                 { name: 'twitter:card',        content: 'summary_large_image' },
-                { name: 'twitter:title',       content: '{{SITE_NAME}} — {{HERO_HEADLINE}}' },
-                { name: 'twitter:description', content: '{{SITE_DESCRIPTION}}' },
-                { name: 'twitter:image',       content: '{{SITE_DOMAIN}}/logo.png' }
+                { name: 'twitter:title',       content: 'Integrity Design + Build — Renovations Designed Around Your Life' },
+                { name: 'twitter:description', content: 'Integrity Design + Build is a Twin Cities remodeling company specializing in kitchens, bathrooms, basements, and full-home renovations that elevate comfort and style.' },
+                { name: 'twitter:image',       content: 'https://integritydesignmn.com/images/kitchen-remodel.svg' }
             ],
             link: [
-                { rel: 'canonical', href: '{{SITE_DOMAIN}}' },
+                { rel: 'canonical', href: 'https://integritydesignmn.com' },
 
                 // Fonts (no @nuxtjs/google-fonts needed)
                 { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
                 { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
                 {
                     rel: 'stylesheet',
-                    href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700&display=swap'
+                    href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap'
                 },
 
                 // Favicon
@@ -62,7 +62,7 @@ export default defineNuxtConfig({
                 {
                     src: 'https://plausible.io/js/script.js',
                     defer: true,
-                    'data-domain': '{{ANALYTICS_DOMAIN}}'
+                    'data-domain': 'integritydesignmn.com'
                 },
                 /* Google Tag Manager - handled in components for better compatibility */
             ]
@@ -93,8 +93,8 @@ export default defineNuxtConfig({
 
     // Sitemap (module uses this for absolute URLs)
     site: {
-        url: '{{SITE_DOMAIN}}',
-        name: '{{SITE_NAME}}'
+        url: 'https://integritydesignmn.com',
+        name: 'Integrity Design + Build'
         // You can customize routes/exclude later if needed
     },
 
@@ -109,8 +109,8 @@ export default defineNuxtConfig({
     // Runtime config to avoid serialization issues
     runtimeConfig: {
         public: {
-            siteName: '{{SITE_NAME}}',
-            siteUrl: '{{SITE_DOMAIN}}'
+            siteName: 'Integrity Design + Build',
+            siteUrl: 'https://integritydesignmn.com'
         }
     }
 })

@@ -72,11 +72,11 @@
 
                 <!-- CTA buttons (desktop) -->
                 <li class="hidden sm:block">
-                    <a :href="`tel:${siteConfig.phone}`" class="btn-primary mr-2">
+                    <a :href="`tel:${siteConfig.phone}`" class="btn-primary mr-2 text-white">
                         Call {{ siteConfig.phoneDisplay || prettyPhone }}
                     </a>
-                    <NuxtLink to="/contact" class="btn-accent">
-                        Request&nbsp;Estimate
+                    <NuxtLink to="/contact" class="btn-accent text-white">
+                        Plan&nbsp;Consultation
                     </NuxtLink>
                 </li>
             </ul>

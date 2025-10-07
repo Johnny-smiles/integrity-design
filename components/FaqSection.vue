@@ -44,24 +44,24 @@ interface FAQ { q: string; a: string }
 
 const faqs: FAQ[] = [
     {
-        q: 'How long does PDR take?',
-        a: 'Small door dings can be finished in a couple of hours. Larger creases or multi-panel repairs take longer; we’ll give you a clear estimate after seeing photos.'
+        q: 'What does your design-build process look like?',
+        a: 'We begin with an in-home walkthrough, develop layouts and selections together, then lock scope, budget, and schedule before construction starts.'
     },
     {
-        q: 'Will PDR affect my paint or CarFax?',
-        a: 'No—PDR preserves your OEM paint and typically does not show up on CarFax because there’s no repainting or body filler involved.'
+        q: 'Can we live at home during the remodel?',
+        a: 'For most kitchen, bath, and basement projects you can stay home. We protect pathways, create temporary setups, and keep dust to a minimum.'
     },
     {
-        q: 'Can I text photos for a quote?',
-        a: 'Yes. Text a few angles of the dent and include year/make/model for the fastest quote. We’ll reply with an estimate and available time slots.'
+        q: 'Do you help with permits and inspections?',
+        a: 'Yes. We handle permitting, coordinate inspections, and share updates so you always know what milestone is next.'
     },
     {
-        q: 'Do you handle insurance for hail?',
-        a: 'Absolutely. We provide insurance-friendly estimates and help coordinate the process so your hail damage is repaired panel by panel.'
+        q: 'How do you keep projects on budget?',
+        a: 'Detailed allowances, transparent change approvals, and weekly progress reviews help us hold to the agreed budget and timeline.'
     },
     {
-        q: 'Do you offer mobile service?',
-        a: 'For many single-panel dents we can come to you. For larger or complex work, we’ll schedule a drop-off at our Lakeland location.'
+        q: 'Which areas do you serve?',
+        a: 'We remodel homes across White Bear Lake, Vadnais Heights, Maplewood, Shoreview, St Paul, and neighboring east-metro communities.'
     }
 ]
 

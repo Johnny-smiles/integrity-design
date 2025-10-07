@@ -29,7 +29,7 @@
 
             <!-- CTA -->
             <div class="w-full text-center">
-                <h3 class="text-lg font-semibold mb-3">Need Help Fast?</h3>
+                <h3 class="text-lg font-semibold mb-3">Ready to plan?</h3>
                 <a :href="`tel:${phoneE164}`" class="btn-primary inline-block mt-2">
                     Call {{ phoneDisplay }}
                 </a>
@@ -46,8 +46,8 @@
 import { computed } from 'vue'
 import { siteConfig } from '~/site.config'
 
-const brandName = computed(() => siteConfig.siteName || 'Acadia PDR')
-const email = computed(() => siteConfig.email || 'info@acadiapdr.com')
+const brandName = computed(() => siteConfig.siteName || 'Integrity Design + Build')
+const email = computed(() => siteConfig.email || 'info@integritydesignmn.com')
 
 const phoneDisplay = computed(() => {
     // prefer a display value if present

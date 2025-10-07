@@ -1,7 +1,7 @@
 <template>
     <main>
         <section class="max-w-4xl mx-auto px-6 py-20">
-            <h1 class="text-4xl md:text-5xl font-bold mb-8">Request a Free Estimate</h1>
+            <h1 class="text-4xl md:text-5xl font-bold mb-8">Request a Design Consultation</h1>
 
             <!-- Confirmation message -->
             <div
@@ -12,7 +12,7 @@
             </div>
 
             <form
-                name="estimate"
+                name="design-consultation"
                 method="POST"
                 action="/contact?success=1"
                 data-netlify="true"
@@ -21,7 +21,7 @@
                 class="space-y-6"
             >
                 <!-- Netlify required hidden input -->
-                <input type="hidden" name="form-name" value="estimate" />
+                <input type="hidden" name="form-name" value="design-consultation" />
                 <p class="hidden">
                     <label>Don’t fill this out <input name="bot-field" /></label>
                 </p>
@@ -64,40 +64,65 @@
                             name="contactPreference"
                             class="w-full border border-black/10 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-primary"
                         >
-                            <option>Text</option>
                             <option>Call</option>
                             <option>Email</option>
+                            <option>Text</option>
                         </select>
                     </div>
                 </div>
 
-                <!-- Vehicle & location -->
+                <!-- Project details -->
                 <div class="grid md:grid-cols-2 gap-6">
                     <div>
-                        <label class="block font-medium mb-1">Vehicle (Year / Make / Model)</label>
+                        <label class="block font-medium mb-1">Project Type</label>
                         <input
                             type="text"
-                            name="vehicle"
-                            placeholder="e.g., 2021 Toyota Camry"
+                            name="projectType"
+                            placeholder="Kitchen, bathroom, basement, whole-home..."
                             class="w-full border border-black/10 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-primary"
                         />
                     </div>
                     <div>
-                        <label class="block font-medium mb-1">Repair Location</label>
+                        <label class="block font-medium mb-1">Ideal Timeline</label>
                         <select
-                            name="location"
+                            name="timeline"
                             class="w-full border border-black/10 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-primary"
                         >
-                            <option>Mobile Service (onsite)</option>
-                            <option>Drop-off in {{ADDRESS_CITY}}</option>
-                            <option>Either</option>
+                            <option>1–3 months</option>
+                            <option>3–6 months</option>
+                            <option>6–12 months</option>
+                            <option>Exploring options</option>
                         </select>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block font-medium mb-1">Approximate Budget</label>
+                        <select
+                            name="budget"
+                            class="w-full border border-black/10 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-primary"
+                        >
+                            <option>$50k or less</option>
+                            <option>$50k–$100k</option>
+                            <option>$100k–$200k</option>
+                            <option>$200k+</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-medium mb-1">Address or City</label>
+                        <input
+                            type="text"
+                            name="projectLocation"
+                            placeholder="City or neighborhood"
+                            class="w-full border border-black/10 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-primary"
+                        />
                     </div>
                 </div>
 
                 <!-- Photos -->
                 <div>
-                    <label class="block font-medium mb-1">Photos (up to 5)</label>
+                    <label class="block font-medium mb-1">Inspiration or current space photos (up to 5)</label>
                     <input
                         type="file"
                         name="photos"
@@ -106,7 +131,7 @@
                         class="w-full border border-black/10 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-primary"
                     />
                     <p class="text-sm text-neutral-600 mt-2">
-                        Tip: Stand back 3–5 ft and include reflection lines. Add 2–3 angles if possible.
+                        Tip: Snap a wide shot of the room plus any features you want to highlight. Floor plans or sketches are also helpful.
                     </p>
                 </div>
 
@@ -116,26 +141,26 @@
                     <textarea
                         name="message"
                         rows="5"
-                        placeholder="Where is the dent? When did it occur? Any prior paint work on that panel?"
+                        placeholder="Share goals for the space, must-have features, and any questions you have about our process."
                         class="w-full border border-black/10 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-primary"
                     ></textarea>
                 </div>
 
                 <div class="flex flex-wrap gap-3">
-                    <button type="submit" class="btn-primary">Send Request</button>
+                    <button type="submit" class="btn-primary">Submit Request</button>
                     <NuxtLink to="/" class="btn-outline">Back to Home</NuxtLink>
-                    <a :href="`tel:${phone}`" class="btn-accent text-black">Or Call {{ phoneDisplay }}</a>
+                    <a :href="`tel:${phoneE164}`" class="btn-accent text-brand-dark">Or Call {{ phoneDisplay }}</a>
                 </div>
             </form>
 
             <!-- Alt CTA -->
             <div class="mt-10 bg-brand-gradient rounded-2xl p-6 md:p-8 text-white">
-                <h2 class="text-2xl font-bold">Text Photos for the Fastest Quote</h2>
+                <h2 class="text-2xl font-bold">Share plans or inspiration images</h2>
                 <p class="mt-2 text-white/90">
-                    Send 2–3 angles and your year/make/model. We’ll reply with an estimate and available time slots.
+                    Email or text photos of your current space, mood boards, or architects’ drawings and we’ll coordinate your consultation time.
                 </p>
                 <div class="mt-4">
-                    <a :href="`sms:${phone}?body=Hi%20{{SITE_NAME}}%2C%20I%27d%20like%20an%20estimate.`" class="btn-primary">
+                    <a :href="smsHref" class="btn-primary">
                         Text {{ phoneDisplay }}
                     </a>
                 </div>
@@ -163,12 +188,25 @@ onMounted(() => {
 })
 
 // Phone helpers for CTAs
-const phone = computed(() => siteConfig.phone || '')
+const phoneRaw = computed(() => siteConfig.phone || '')
 const phoneDisplay = computed(() => {
     if ((siteConfig).phoneDisplay) return (siteConfig).phoneDisplay
-    const digits = (phone.value || '').replace(/[^0-9]/g, '')
+    const digits = (phoneRaw.value || '').replace(/[^0-9]/g, '')
     if (digits.length === 11 && digits.startsWith('1')) return `(${digits.slice(1,4)}) ${digits.slice(4,7)}-${digits.slice(7)}`
     if (digits.length === 10) return `(${digits.slice(0,3)}) ${digits.slice(3,6)}-${digits.slice(6)}`
-    return phone.value
+    return phoneRaw.value
+})
+
+const phoneE164 = computed(() => {
+    const digits = (phoneRaw.value || '').replace(/[^0-9]/g, '')
+    if (!digits) return ''
+    if (digits.startsWith('1') && digits.length === 11) return `+${digits}`
+    if (digits.length === 10) return `+1${digits}`
+    return phoneRaw.value
+})
+
+const smsHref = computed(() => {
+    const encodedName = encodeURIComponent(siteConfig.siteName || 'Integrity Design + Build')
+    return `sms:${phoneE164.value}?body=Hi%20${encodedName}%2C%20let%27s%20plan%20a%20remodel.`
 })
 </script>

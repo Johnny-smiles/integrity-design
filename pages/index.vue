@@ -4,7 +4,12 @@
         <HeroSection />
 
         <!-- Services (existing component) -->
-        <section class="my-12 max-w-7xl mx-auto w-full px-6">
+        <section class="my-12 md:my-16 max-w-7xl mx-auto w-full px-6">
+            <div class="text-center mb-8 max-w-2xl mx-auto">
+                <p class="uppercase tracking-[0.3em] text-sm text-brand-accent">Our Remodeling Services</p>
+                <h2 class="text-3xl md:text-4xl font-bold mt-3">Spaces planned for how you live</h2>
+                <p class="mt-3 text-neutral-600">Tailored design-build packages for the rooms your family uses most. Tap a service to see how we plan, build, and finish every detail.</p>
+            </div>
             <HomepageServices />
         </section>
 
@@ -12,7 +17,7 @@
         <section class="my-12 md:my-16 max-w-7xl mx-auto w-full px-6">
             <div class="text-center mb-8">
                 <h2 class="text-3xl md:text-4xl font-bold">Why Choose {{ siteConfig.siteName }}</h2>
-                <p class="mt-2 text-neutral-600">Precision PDR with fast turnaround and OEM paint preserved.</p>
+                <p class="mt-2 text-neutral-600">Homeowners trust us for straight-talk planning, curated finishes, and craftsmanship that feels warm and intentional.</p>
             </div>
             <div class="grid md:grid-cols-3 gap-6">
                 <div v-for="(v, i) in siteConfig.valueProps" :key="'val-'+i" class="bg-white rounded-xl shadow-md p-6">
@@ -28,17 +33,34 @@
                 <div>
                     <h2 class="text-3xl md:text-4xl font-bold">About {{ siteConfig.siteName }}</h2>
                     <p class="mt-4 text-neutral-700">
-                        We provide precision paintless dent repair to {{ siteConfig.location.city }} and the {{ siteConfig.serviceAreas }}.
-                        Our process removes dents without repainting—keeping your finish factory-correct and your CarFax clean.
+                        {{ siteConfig.siteName }} is a White Bear Lake team guiding east-metro families through kitchens, baths, basements, and whole-home updates with one integrated process.
+                    </p>
+                    <p class="mt-4 text-neutral-700">
+                        Whether it is a Maplewood bungalow or a Shoreview walkout, we combine thoughtful design, organized selections, and respectful crews so every phase feels calm and coordinated.
                     </p>
                     <div class="mt-6 flex flex-wrap gap-3">
                         <a :href="`tel:${siteConfig.phone}`" class="btn-primary">Call {{ siteConfig.phoneDisplay || siteConfig.phone }}</a>
-                        <NuxtLink to="/contact" class="btn-accent">Get a Free Quote</NuxtLink>
+                        <NuxtLink to="/contact" class="btn-accent text-brand-dark">Plan Your Remodel</NuxtLink>
                     </div>
                 </div>
-                <div class="rounded-xl overflow-hidden shadow-md">
-                    <!-- Replace this with any local image -->
-                    <NuxtImg src="/pdr-hero.jpg" alt="Paintless dent repair" class="w-full h-72 md:h-96 object-cover" />
+                <div class="relative">
+                    <div class="rounded-3xl bg-brand-light border border-black/5 shadow-card p-6 md:p-8">
+                        <div class="grid gap-4">
+                            <div class="rounded-2xl bg-white shadow-card p-5">
+                                <p class="text-sm uppercase tracking-[0.4em] text-brand-accent">Featured finish</p>
+                                <p class="mt-2 text-lg font-semibold text-brand-dark">Brushed brass hardware + matte quartz</p>
+                                <p class="mt-3 text-sm text-brand-dark/70">Paired with warm oak flooring and layered lighting for a welcoming kitchen hub.</p>
+                            </div>
+                            <div class="rounded-2xl bg-brand-dark text-white p-5">
+                                <p class="text-sm uppercase tracking-[0.4em] text-white/60">Process snapshot</p>
+                                <ol class="mt-4 space-y-2 text-sm text-white/85">
+                                    <li>1. In-home design walk-through</li>
+                                    <li>2. Selections + budget alignment</li>
+                                    <li>3. Build with weekly milestone updates</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -61,12 +83,12 @@
             <div class="max-w-7xl mx-auto w-full px-6">
                 <div class="bg-brand-gradient rounded-2xl p-8 md:p-10 text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
                     <div>
-                        <h2 class="text-2xl md:text-3xl font-bold">Free Estimate & Fast Scheduling</h2>
-                        <p class="mt-2 text-white/90">Text photos of the dent for the quickest quote.</p>
+                        <h2 class="text-2xl md:text-3xl font-bold">Plan your renovation with confidence</h2>
+                        <p class="mt-2 text-white/90">Reserve a design discovery visit and we’ll map selections, budget, and timeline together.</p>
                     </div>
                     <div class="flex gap-3">
                         <a :href="`tel:${siteConfig.phone}`" class="btn-primary">Call {{ siteConfig.phoneDisplay || siteConfig.phone }}</a>
-                        <NuxtLink to="/contact" class="btn-accent text-black">Request Estimate</NuxtLink>
+                        <NuxtLink to="/contact" class="btn-accent text-brand-dark">Book a Visit</NuxtLink>
                     </div>
                 </div>
             </div>
@@ -89,7 +111,7 @@
         <section class="my-12 md:my-16 max-w-7xl mx-auto w-full px-6">
             <div class="text-center mb-6">
                 <h2 class="text-3xl md:text-4xl font-bold">Service Areas</h2>
-                <p class="mt-2 text-neutral-600">We serve the {{ siteConfig.serviceAreas }}.</p>
+                <p class="mt-2 text-neutral-600">Proudly remodeling homes in White Bear Lake, Vadnais Heights, Maplewood, Shoreview, and St Paul.</p>
             </div>
             <div class="flex flex-wrap gap-2 justify-center">
         <span
@@ -109,16 +131,19 @@ import { siteConfig }   from '~/site.config'
 import { useHead }      from '#imports'
 
 /* ------------------------------------------------------------------
-   LocalBusiness structured data (kept from your electrician site)
+   LocalBusiness structured data tailored for Integrity Design + Build
 -------------------------------------------------------------------*/
+const sameAsLinks = Object.values(siteConfig.social || {}).filter((link): link is string => Boolean(link))
 const structuredData = {
     '@context': 'https://schema.org',
-    '@type':    'LocalBusiness',
+    '@type':    siteConfig.businessType || 'LocalBusiness',
+    '@id':      `${siteConfig.siteUrl}/#localbusiness`,
     name:        siteConfig.siteName,
     url:         siteConfig.siteUrl,
+    email:       siteConfig.email,
     telephone:   siteConfig.phone,
     description: siteConfig.description,
-    image:       siteConfig.socialImage || undefined,
+    image:       siteConfig.socialImage ? `${siteConfig.siteUrl}${siteConfig.socialImage}` : undefined,
     address: {
         '@type':           'PostalAddress',
         streetAddress:     siteConfig.location.street || undefined,
@@ -128,12 +153,14 @@ const structuredData = {
         addressCountry:    siteConfig.location.country
     },
     openingHours: siteConfig.hours,
+    areaServed:   siteConfig.serviceAreas,
+    sameAs:       sameAsLinks.length ? sameAsLinks : undefined,
+    priceRange:   '$$$',
     geo: siteConfig.location.latitude && siteConfig.location.longitude ? {
         '@type':    'GeoCoordinates',
         latitude:   siteConfig.location.latitude,
         longitude:  siteConfig.location.longitude
-    } : undefined,
-    areaServed: siteConfig.serviceAreas
+    } : undefined
 }
 
 useHead({
