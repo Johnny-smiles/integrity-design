@@ -3,7 +3,7 @@
         <div class="max-w-7xl mx-auto px-6">
             <!-- three-wide grid on lg, two-wide on md, single on mobile -->
             <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-                <div v-for="service in homepageServices" :key="service.slug">
+                <div v-for="service in homepageServices" :key="service.slug" class="group">
                     <NuxtLink :to="`/services/${service.slug}`">
                         <ServiceCardSimple
                             :title="service.title"

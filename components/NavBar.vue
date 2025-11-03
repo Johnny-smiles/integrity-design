@@ -2,10 +2,10 @@
     <!-- Top header -->
     <nav class="sticky top-0 z-50 bg-white border-b border-brand-dark/10">
         <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-            <!-- Logo (no image file needed) -->
-            <NuxtLink to="/" class="flex items-center gap-3">
-                <img src="/logo.png" :alt="`${siteConfig.siteName} Logo`" class="w-10 h-10 rounded object-cover" />
-                <span class="font-semibold">{{ siteConfig.siteName }}</span>
+            <!-- Logo (responsive) -->
+            <NuxtLink to="/" class="flex items-center gap-2 sm:gap-3">
+                <img src="/logo.png" :alt="`${siteConfig.siteName} Logo`" class="w-10 h-10 sm:w-12 sm:h-12 object-contain" />
+                <span class="font-semibold text-sm sm:text-base">{{ siteConfig.siteName }}</span>
             </NuxtLink>
 
             <!-- Mobile hamburger -->
@@ -60,14 +60,21 @@
 
                 <!-- Services in mobile drawer -->
                 <li class="sm:hidden flex flex-col items-end space-y-2 w-full">
-                    <NuxtLink to="/services" class="hover:text-brand-primary" @click="closeAll">All Services</NuxtLink>
-                    <NuxtLink v-for="service in services" :key="service.slug" :to="`/services/${service.slug}`" class="hover:text-brand-primary" @click="closeAll">{{ service.title }}</NuxtLink>
+                    <NuxtLink to="/services" class="hover:text-brand-primary font-semibold" @click="closeAll">All Services</NuxtLink>
+                    <NuxtLink v-for="service in services" :key="service.slug" :to="`/services/${service.slug}`" class="hover:text-brand-primary text-base font-normal pl-4" @click="closeAll">{{ service.title }}</NuxtLink>
+                </li>
+                
+                <!-- Contact & FAQs in mobile -->
+                <li class="sm:hidden">
+                    <NuxtLink to="/faqs" class="hover:text-brand-primary" @click="closeAll">FAQs</NuxtLink>
+                </li>
+                <li class="sm:hidden">
                     <NuxtLink to="/contact" class="hover:text-brand-primary" @click="closeAll">Contact</NuxtLink>
                 </li>
 
-                <!-- Recent Work top-level (desktop) -->
+                <!-- FAQs top-level (desktop) -->
                 <li class="hidden sm:block">
-<!--                    <NuxtLink to="/recent-work" class="nav-link hover:text-brand-primary" @click="closeAll">Recent&nbsp;Work</NuxtLink>-->
+                    <NuxtLink to="/faqs" class="nav-link hover:text-brand-primary" @click="closeAll">FAQs</NuxtLink>
                 </li>
 
                 <!-- CTA buttons (desktop) -->

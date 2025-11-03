@@ -3,7 +3,7 @@
         <div class="max-w-7xl mx-auto grid gap-10 px-6 md:grid-cols-3 lg:grid-cols-4 justify-items-center text-center">
             <!-- Brand -->
             <div class="w-full text-center md:text-left justify-self-center">
-                <img src="/logo.png" :alt="`${siteConfig.siteName} Logo`" class="w-16 h-16 rounded object-cover mx-auto md:mx-0" />
+                <img src="/logo.png" :alt="`${siteConfig.siteName} Logo`" class="w-20 h-20 object-contain mx-auto md:mx-0" />
                 <p class="mt-4 font-semibold">{{ brandName }}</p>
                 <p class="mt-1">
                     <a :href="`tel:${phoneE164}`" class="underline">{{ phoneDisplay }}</a>

@@ -22,7 +22,7 @@
                 </div>
                 <div class="rounded-2xl bg-brand-dark text-white p-5">
                     <h2 class="text-lg font-semibold mb-2">Next Step</h2>
-                    <p class="text-sm text-white/75 mb-3">Book a design walk-through to explore tailored options.</p>
+                    <p class="text-sm text-white/95 mb-3">Book a design walk-through to explore tailored options.</p>
                     <NuxtLink to="/contact" class="btn-accent text-brand-dark">Start the Conversation</NuxtLink>
                 </div>
             </div>
