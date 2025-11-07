@@ -6,10 +6,9 @@
 
 /* 2) Brand tokens (from the business card) */
 :root {
-    --brand-dark:    #000000;   /* black text */
-    --brand-primary: #7A0000;   /* logo red */
-    --brand-accent:  #b11212;   /* slightly brighter red for hover/CTA */
-    --brand-light:   #ffffff;   /* background */
+    --brand-dark:    #1a1a1a;   /* charcoal text */
+    --brand-primary: #b11212;   /* primary brand red */
+    --brand-light:   #fafafa;   /* background */
     --brand-neutral: #f5f5f5;   /* subtle section contrast */
 }
 
@@ -47,7 +46,7 @@
 
 /* 4) Re-usable components & helpers */
 @layer components {
-    /* Primary CTA (teal) */
+    /* Primary CTA (solid brand red) */
     .btn-primary {
         @apply inline-flex items-center justify-center font-semibold rounded-md px-6 py-3 transition;
         color: #fff;
@@ -55,13 +54,17 @@
     }
     .btn-primary:hover { filter: brightness(.95); }
 
-    /* Accent CTA (amber) */
+    /* Accent/secondary CTA (outline in brand red) */
     .btn-accent {
-        @apply inline-flex items-center justify-center font-semibold rounded-md px-6 py-3 transition;
-        color: #1f2937;
-        background-color: var(--brand-accent);
+        @apply inline-flex items-center justify-center font-semibold rounded-md px-6 py-3 transition border;
+        color: var(--brand-primary);
+        border-color: var(--brand-primary);
+        background-color: transparent;
     }
-    .btn-accent:hover { filter: brightness(.95); }
+    .btn-accent:hover {
+        background-color: var(--brand-primary);
+        color: #fff;
+    }
 
     /* Outline button */
     .btn-outline {
@@ -102,10 +105,8 @@
         background: #fff;
     }
 
-    /* Brand gradient helpers */
-    .bg-brand-gradient {
-        background-image: linear-gradient(90deg, var(--brand-primary) 0%, var(--brand-primary-2) 100%);
-    }
+    /* Brand banner helper */
+    .bg-brand-gradient { background-color: var(--brand-primary); }
     .text-brand-primary   { color: var(--brand-primary); }
     .border-brand-primary { border-color: var(--brand-primary); }
 }

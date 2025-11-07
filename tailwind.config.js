@@ -17,10 +17,9 @@ export default {
         extend: {
             colors: {
                 'brand-dark':    '#1a1a1a', // charcoal text
-                'brand-primary': '#1a1a1a', // primary brand tone
-                'brand-primary-2':'#f5c211', // gradient highlight
-                'brand-accent':  '#eab308', // golden accent
+                'brand-primary': '#b11212', // primary brand red
                 'brand-light':   '#fafafa', // soft background
+                'brand-neutral': '#f5f5f5', // subtle section contrast
             },
             fontFamily: {
                 heading: ['\"Playfair Display\"', 'serif'],

@@ -30,9 +30,8 @@ export const siteConfig = {
 
     // Theme
     theme: {
-        primaryColor: '#7A0000',
+        primaryColor: '#b11212',
         secondaryColor: '#ffffff',
-        accentColor: '#b11212',
         fontFamily: ['Playfair Display', 'Inter'],
         borderRadius: '0.5rem'
     },

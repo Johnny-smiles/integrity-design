@@ -1,11 +1,11 @@
 <template>
     <!-- Top header -->
     <nav class="sticky top-0 z-50 bg-white border-b border-brand-dark/10">
-        <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-            <!-- Logo (no image file needed) -->
-            <NuxtLink to="/" class="flex items-center gap-3">
-                <img src="/logo.png" :alt="`${siteConfig.siteName} Logo`" class="w-10 h-10 rounded object-cover" />
-                <span class="font-semibold">{{ siteConfig.siteName }}</span>
+        <div class="max-w-7xl mx-auto flex items-center justify-between px-6">
+            <!-- Logo (responsive) -->
+            <NuxtLink to="/" class="flex items-center gap-2 sm:gap-3 overflow-hidden">
+                <img src="/logo.png" :alt="`${siteConfig.siteName} Logo`" class="h-16 w-[200px] sm:h-20 sm:w-[250px] object-cover" />
+                <!-- <span class="font-semibold text-sm sm:text-base">{{ siteConfig.siteName }}</span> -->
             </NuxtLink>
 
             <!-- Mobile hamburger -->
@@ -38,7 +38,7 @@
                 <!-- Services dropdown (desktop only, click-based) -->
                 <li class="relative hidden sm:block">
                     <button
-                        class="nav-link cursor-pointer hover:text-brand-primary select-none"
+                        class="nav-link cursor-pointer hover:text-brand-primary select-none whitespace-nowrap"
                         @click="toggleServices()"
                         @keydown.enter.space.prevent="toggleServices()"
                         :aria-expanded="servicesOpen.toString()"
@@ -60,22 +60,29 @@
 
                 <!-- Services in mobile drawer -->
                 <li class="sm:hidden flex flex-col items-end space-y-2 w-full">
-                    <NuxtLink to="/services" class="hover:text-brand-primary" @click="closeAll">All Services</NuxtLink>
-                    <NuxtLink v-for="service in services" :key="service.slug" :to="`/services/${service.slug}`" class="hover:text-brand-primary" @click="closeAll">{{ service.title }}</NuxtLink>
+                    <NuxtLink to="/services" class="hover:text-brand-primary font-semibold" @click="closeAll">All Services</NuxtLink>
+                    <NuxtLink v-for="service in services" :key="service.slug" :to="`/services/${service.slug}`" class="hover:text-brand-primary text-base font-normal pl-4" @click="closeAll">{{ service.title }}</NuxtLink>
+                </li>
+                
+                <!-- Contact & FAQs in mobile -->
+                <li class="sm:hidden">
+                    <NuxtLink to="/faqs" class="hover:text-brand-primary" @click="closeAll">FAQs</NuxtLink>
+                </li>
+                <li class="sm:hidden">
                     <NuxtLink to="/contact" class="hover:text-brand-primary" @click="closeAll">Contact</NuxtLink>
                 </li>
 
-                <!-- Recent Work top-level (desktop) -->
+                <!-- FAQs top-level (desktop) -->
                 <li class="hidden sm:block">
-<!--                    <NuxtLink to="/recent-work" class="nav-link hover:text-brand-primary" @click="closeAll">Recent&nbsp;Work</NuxtLink>-->
+                    <NuxtLink to="/faqs" class="nav-link hover:text-brand-primary" @click="closeAll">FAQs</NuxtLink>
                 </li>
 
                 <!-- CTA buttons (desktop) -->
                 <li class="hidden sm:block">
-                    <a :href="`tel:${siteConfig.phone}`" class="btn-primary mr-2 text-white">
+                    <a :href="`tel:${siteConfig.phone}`" class="btn-primary mr-2 text-white hidden lg:inline-flex">
                         Call {{ siteConfig.phoneDisplay || prettyPhone }}
                     </a>
-                    <NuxtLink to="/contact" class="btn-accent text-white">
+                    <NuxtLink to="/contact" class="btn-accent">
                         Plan&nbsp;Consultation
                     </NuxtLink>
                 </li>

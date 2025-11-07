@@ -21,9 +21,17 @@
                     <p class="text-sm text-brand-dark/70">Seasoned designers and craftspeople working as one team.</p>
                 </div>
                 <div class="rounded-2xl bg-brand-dark text-white p-5">
-                    <h2 class="text-lg font-semibold mb-2">Next Step</h2>
-                    <p class="text-sm text-white/75 mb-3">Book a design walk-through to explore tailored options.</p>
-                    <NuxtLink to="/contact" class="btn-accent text-brand-dark">Start the Conversation</NuxtLink>
+                    <h2 class="text-lg font-semibold text-white mb-2">Next Step</h2>
+                    <p class="text-sm text-white/95 mb-3">Book a design walk-through to explore tailored options.</p>
+                    <div class="flex flex-col gap-3 sm:flex-row">
+                        <NuxtLink to="/contact" class="inline-flex items-center justify-center font-semibold rounded-md px-6 py-3 transition border border-brand-primary text-white hover:bg-brand-primary/10">Start the Conversation</NuxtLink>
+                        <NuxtLink
+                            to="/services/deck-building"
+                            class="inline-flex items-center justify-center font-semibold rounded-md px-6 py-3 transition border border-white text-white hover:bg-white/10"
+                        >
+                            Deck Building Services
+                        </NuxtLink>
+                    </div>
                 </div>
             </div>
         </section>

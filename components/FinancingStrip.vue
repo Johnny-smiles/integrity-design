@@ -36,7 +36,13 @@
         
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <NuxtLink to="/contact" class="btn-primary">Get Pre-Approved</NuxtLink>
-          <a :href="`tel:${siteConfig.phone}`" class="btn-accent text-black">Call for Details</a>
+          <a :href="`tel:${siteConfig.phone}`" class="btn-accent">Call for Details</a>
+          <NuxtLink
+            to="/services/deck-building"
+            class="inline-flex items-center justify-center font-semibold rounded-md px-6 py-3 transition bg-white text-brand-primary hover:opacity-90"
+          >
+            Deck Building Services
+          </NuxtLink>
         </div>
       </div>
     </div>

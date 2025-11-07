@@ -149,7 +149,7 @@
                 <div class="flex flex-wrap gap-3">
                     <button type="submit" class="btn-primary">Submit Request</button>
                     <NuxtLink to="/" class="btn-outline">Back to Home</NuxtLink>
-                    <a :href="`tel:${phoneE164}`" class="btn-accent text-brand-dark">Or Call {{ phoneDisplay }}</a>
+                    <a :href="`tel:${phoneE164}`" class="btn-accent">Or Call {{ phoneDisplay }}</a>
                 </div>
             </form>
 
@@ -163,6 +163,12 @@
                     <a :href="smsHref" class="btn-primary">
                         Text {{ phoneDisplay }}
                     </a>
+                    <NuxtLink
+                        to="/services/deck-building"
+                        class="inline-flex items-center justify-center font-semibold rounded-md px-6 py-3 transition bg-white text-brand-primary hover:opacity-90 mt-3 md:mt-0 md:ml-3"
+                    >
+                        See Deck Building
+                    </NuxtLink>
                 </div>
             </div>
         </section>

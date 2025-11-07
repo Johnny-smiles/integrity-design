@@ -6,11 +6,16 @@
         <!-- Services (existing component) -->
         <section class="my-12 md:my-16 max-w-7xl mx-auto w-full px-6">
             <div class="text-center mb-8 max-w-2xl mx-auto">
-                <p class="uppercase tracking-[0.3em] text-sm text-brand-accent">Our Remodeling Services</p>
+                <p class="uppercase tracking-[0.3em] text-sm text-brand-primary">Our Remodeling Services</p>
                 <h2 class="text-3xl md:text-4xl font-bold mt-3">Spaces planned for how you live</h2>
                 <p class="mt-3 text-neutral-600">Tailored design-build packages for the rooms your family uses most. Tap a service to see how we plan, build, and finish every detail.</p>
             </div>
             <HomepageServices />
+            <div class="mt-6 text-center">
+                <NuxtLink to="/services/deck-building" class="btn-outline">
+                    Explore Deck Building
+                </NuxtLink>
+            </div>
         </section>
 
         <!-- Why Choose {{SITE_NAME}} (value props) -->
@@ -40,14 +45,15 @@
                     </p>
                     <div class="mt-6 flex flex-wrap gap-3">
                         <a :href="`tel:${siteConfig.phone}`" class="btn-primary">Call {{ siteConfig.phoneDisplay || siteConfig.phone }}</a>
-                        <NuxtLink to="/contact" class="btn-accent text-brand-dark">Plan Your Remodel</NuxtLink>
+                        <NuxtLink to="/contact" class="btn-accent">Plan Your Remodel</NuxtLink>
+                        <NuxtLink to="/services/deck-building" class="btn-outline">Deck Building Services</NuxtLink>
                     </div>
                 </div>
                 <div class="relative">
                     <div class="rounded-3xl bg-brand-light border border-black/5 shadow-card p-6 md:p-8">
                         <div class="grid gap-4">
                             <div class="rounded-2xl bg-white shadow-card p-5">
-                                <p class="text-sm uppercase tracking-[0.4em] text-brand-accent">Featured finish</p>
+                                <p class="text-sm uppercase tracking-[0.4em] text-brand-primary">Featured finish</p>
                                 <p class="mt-2 text-lg font-semibold text-brand-dark">Brushed brass hardware + matte quartz</p>
                                 <p class="mt-3 text-sm text-brand-dark/70">Paired with warm oak flooring and layered lighting for a welcoming kitchen hub.</p>
                             </div>
@@ -88,7 +94,13 @@
                     </div>
                     <div class="flex gap-3">
                         <a :href="`tel:${siteConfig.phone}`" class="btn-primary">Call {{ siteConfig.phoneDisplay || siteConfig.phone }}</a>
-                        <NuxtLink to="/contact" class="btn-accent text-brand-dark">Book a Visit</NuxtLink>
+                        <NuxtLink to="/contact" class="btn-accent">Book a Visit</NuxtLink>
+                        <NuxtLink
+                            to="/services/deck-building"
+                            class="inline-flex items-center justify-center font-semibold rounded-md px-6 py-3 transition bg-white text-brand-primary hover:opacity-90"
+                        >
+                            Deck Building Services
+                        </NuxtLink>
                     </div>
                 </div>
             </div>

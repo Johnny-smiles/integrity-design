@@ -17,7 +17,13 @@
         </a>
       </div>
       <div class="flex items-center gap-4">
-        <NuxtLink to="/contact" class="btn-accent text-sm text-brand-dark">Plan Consultation</NuxtLink>
+        <NuxtLink to="/contact" class="btn-accent text-sm">Plan Consultation</NuxtLink>
+        <NuxtLink
+          to="/services/deck-building"
+          class="inline-flex items-center rounded-md border border-white/70 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/10"
+        >
+          Deck Building
+        </NuxtLink>
         <div class="flex gap-2">
           <a v-if="siteConfig.social?.facebook" :href="siteConfig.social.facebook" target="_blank" rel="noopener" class="hover:text-white/80">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
