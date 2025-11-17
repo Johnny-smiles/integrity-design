@@ -6,6 +6,12 @@
       <p class="max-w-3xl mx-auto text-lg text-brand-dark/80">
         We plan every renovation around the way you cook, host, and move through the space. From structural changes that open the main level to cabinetry systems that hide small appliances, each choice is coordinated by one design-build team so selections, schedule, and budget stay aligned.
       </p>
+      
+      <!-- Image placeholder: Kitchen hero -->
+      <div class="image-placeholder aspect-[21/9] rounded-2xl max-w-5xl mx-auto my-8">
+        <span>Featured Kitchen Remodel Photo</span>
+      </div>
+
       <div class="flex flex-wrap gap-3 justify-center mt-8">
         <NuxtLink to="/contact" class="btn-primary">Book a Kitchen Walk-Through</NuxtLink>
         <a :href="`tel:${siteConfig.phone}`" class="btn-accent">Call {{ siteConfig.phoneDisplay || siteConfig.phone }}</a>
@@ -51,6 +57,11 @@
       </div>
 
       <aside class="space-y-6">
+        <!-- Image placeholder: Kitchen detail shot -->
+        <div class="image-placeholder aspect-[4/3] rounded-xl">
+          <span>Kitchen Detail Photo</span>
+        </div>
+
         <div class="rounded-2xl bg-white border border-black/5 shadow-card p-6">
           <h3 class="text-xl font-semibold text-brand-dark mb-3">Kitchen snapshot</h3>
           <dl class="space-y-3">
@@ -161,3 +172,4 @@ useHead({
   ]
 })
 </script>
+

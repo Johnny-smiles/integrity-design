@@ -16,7 +16,9 @@
         </div>
         <div class="relative">
           <div class="rounded-3xl bg-white/10 backdrop-blur border border-white/20 p-6">
-            <NuxtImg src="/images/kitchen-remodel.svg" alt="Render of a modern kitchen renovation" class="rounded-2xl shadow-xl" />
+            <div class="image-placeholder aspect-[4/3] rounded-2xl">
+              <span>Featured Project Hero Image</span>
+            </div>
           </div>
         </div>
       </div>
@@ -29,7 +31,9 @@
       </div>
       <div class="grid gap-10 lg:grid-cols-3">
         <article v-for="project in caseStudies" :key="project.title" class="rounded-3xl border border-black/5 shadow-card overflow-hidden bg-white flex flex-col">
-          <NuxtImg :src="project.image" :alt="project.imageAlt" class="w-full h-52 object-cover" />
+          <div class="image-placeholder aspect-[16/9]">
+            <span>{{ project.title }} Photo</span>
+          </div>
           <div class="p-6 space-y-4 flex-1 flex flex-col">
             <div>
               <p class="text-sm uppercase tracking-[0.3em] text-brand-primary">{{ project.location }}</p>

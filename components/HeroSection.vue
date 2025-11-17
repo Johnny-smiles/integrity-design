@@ -11,6 +11,12 @@
                 <p class="text-lg text-brand-dark/90 max-w-xl">
                     Custom kitchens, baths, and basements with clear budgets and quality craft.
                 </p>
+                
+                <!-- Image placeholder: Hero image -->
+                <div class="image-placeholder aspect-[16/9] rounded-xl md:hidden">
+                    <span>Featured Project Hero Image</span>
+                </div>
+
                 <div class="flex flex-col gap-4 w-fit">
                     <div class="flex flex-wrap gap-4">
                         <a :href="`tel:${siteConfig.phone}`" class="btn-primary">
@@ -92,3 +98,4 @@ const displayAreas = computed(() => {
     return areas.slice(0, 4)
 })
 </script>
+

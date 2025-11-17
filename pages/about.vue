@@ -3,6 +3,11 @@
         <section class="max-w-5xl mx-auto px-6 py-20 space-y-6">
             <h1 class="text-4xl md:text-5xl font-bold mb-6">About {{ siteConfig.siteName }}</h1>
 
+            <!-- Image placeholder: Team or office photo -->
+            <div class="image-placeholder aspect-[16/9] rounded-2xl mb-8">
+                <span>Team Photo or Office Interior</span>
+            </div>
+
             <p>
                 {{ siteConfig.siteName }} brings designers and builders together under one roof in {{ siteConfig.location.city }}. We guide kitchen, bath, and whole-home projects across the Twin Cities east metro with steady, collaborative leadership.
             </p>
@@ -10,6 +15,16 @@
             <p>
                 Every remodel begins with how you live. We shape layouts, finish palettes, and weekly updates that keep families in Vadnais Heights and Shoreview informed, comfortable, and excited for the reveal.
             </p>
+
+            <!-- Image placeholder: Process or work in progress -->
+            <div class="grid md:grid-cols-2 gap-6 py-6">
+                <div class="image-placeholder aspect-[4/3] rounded-xl">
+                    <span>Design Consultation Photo</span>
+                </div>
+                <div class="image-placeholder aspect-[4/3] rounded-xl">
+                    <span>Construction Process Photo</span>
+                </div>
+            </div>
 
             <div class="grid gap-4 md:grid-cols-3 pt-4">
                 <div class="rounded-2xl bg-brand-light border border-black/5 p-5">
@@ -41,3 +56,4 @@
 <script setup>
 import { siteConfig } from '~/site.config'
 </script>
+

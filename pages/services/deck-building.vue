@@ -6,6 +6,11 @@
       <p class="max-w-3xl mx-auto text-lg text-brand-dark/80">
         Engineered, code-compliant decks built with premium framing, low-maintenance materials, and integrated lighting so your outdoor living space feels as refined as the rest of your home.
       </p>
+      
+      <div class="image-placeholder aspect-[21/9] rounded-2xl max-w-5xl mx-auto my-8">
+        <span>Featured Deck Building Photo</span>
+      </div>
+
       <div class="flex flex-wrap gap-3 justify-center mt-8">
         <NuxtLink to="/contact" class="btn-primary">Schedule a Deck Consult</NuxtLink>
         <a :href="`tel:${siteConfig.phone}`" class="btn-accent">Call {{ siteConfig.phoneDisplay || siteConfig.phone }}</a>
@@ -49,6 +54,10 @@
       </div>
 
       <aside class="space-y-6">
+        <div class="image-placeholder aspect-[4/3] rounded-xl">
+          <span>Deck Detail Photo</span>
+        </div>
+
         <div class="rounded-2xl bg-white border border-black/5 shadow-card p-6">
           <h3 class="text-xl font-semibold text-brand-dark mb-3">Deck package snapshot</h3>
           <dl class="space-y-3 text-brand-dark/80">

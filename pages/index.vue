@@ -35,7 +35,13 @@
         <!-- About {{SITE_NAME}} -->
         <section class="my-12 md:my-16 max-w-7xl mx-auto w-full px-6">
             <div class="grid md:grid-cols-2 gap-8 items-center">
-                <div>
+                <!-- Image placeholder: Team photo or completed project -->
+                <div class="relative order-2 md:order-1">
+                    <div class="image-placeholder aspect-[4/3] rounded-2xl">
+                        <span>Team Photo or Featured Project</span>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2">
                     <h2 class="text-3xl md:text-4xl font-bold">About {{ siteConfig.siteName }}</h2>
                     <p class="mt-4 text-neutral-700">
                         {{ siteConfig.siteName }} is a White Bear Lake team guiding east-metro families through kitchens, baths, basements, and whole-home updates with one integrated process.
@@ -49,7 +55,7 @@
                         <NuxtLink to="/services/deck-building" class="btn-outline">Deck Building Services</NuxtLink>
                     </div>
                 </div>
-                <div class="relative">
+                <div class="relative hidden">
                     <div class="rounded-3xl bg-brand-light border border-black/5 shadow-card p-6 md:p-8">
                         <div class="grid gap-4">
                             <div class="rounded-2xl bg-white shadow-card p-5">
@@ -71,6 +77,31 @@
             </div>
         </section>
 
+        <!-- Before/After Gallery -->
+        <section class="my-12 md:my-16 max-w-7xl mx-auto w-full px-6">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl md:text-4xl font-bold">Recent Transformations</h2>
+                <p class="mt-2 text-neutral-600">See how we've helped families reimagine their spaces</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Image placeholder: Before/After 1 -->
+                <div class="image-placeholder aspect-[4/3] rounded-xl">
+                    <span>Kitchen Before/After</span>
+                </div>
+                <!-- Image placeholder: Before/After 2 -->
+                <div class="image-placeholder aspect-[4/3] rounded-xl">
+                    <span>Bathroom Before/After</span>
+                </div>
+                <!-- Image placeholder: Before/After 3 -->
+                <div class="image-placeholder aspect-[4/3] rounded-xl">
+                    <span>Basement Before/After</span>
+                </div>
+            </div>
+            <div class="mt-8 text-center">
+                <NuxtLink to="/recent-work" class="btn-outline">View All Projects</NuxtLink>
+            </div>
+        </section>
+
         <!-- Reviews -->
         <section class="my-12 md:my-16 max-w-7xl mx-auto w-full px-6">
             <div class="text-center mb-8">
@@ -78,7 +109,11 @@
             </div>
             <div class="grid md:grid-cols-3 gap-6">
                 <div v-for="(r, i) in siteConfig.reviews" :key="'rev-'+i" class="bg-white rounded-xl shadow-md p-6">
-                    <p class="text-neutral-700">“{{ r.text }}”</p>
+                    <!-- Optional: Client photo placeholder -->
+                    <div class="image-placeholder aspect-square w-16 h-16 rounded-full mb-4 mx-auto">
+                        <span class="text-xs">Photo</span>
+                    </div>
+                    <p class="text-neutral-700">"{{ r.text }}"</p>
                     <p class="mt-3 text-sm text-neutral-500">— {{ r.name }}</p>
                 </div>
             </div>
