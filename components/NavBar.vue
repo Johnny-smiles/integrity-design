@@ -10,10 +10,10 @@
 
             <!-- Mobile hamburger -->
             <button
-                class="sm:hidden flex flex-col gap-[6px] focus:outline-none"
+                class="sm:hidden flex flex-col gap-[6px] focus:outline-2 focus:outline-brand-primary p-2 rounded"
                 @click="toggleMain()"
                 :aria-expanded="isOpen.toString()"
-                aria-label="Toggle navigation"
+                aria-label="Toggle navigation menu"
             >
         <span class="w-6 h-[2px] bg-brand-primary transition-transform"
               :class="{ 'rotate-45 translate-y-[8px]': isOpen }" />
@@ -49,6 +49,7 @@
                     <ul
                         v-if="servicesOpen"
                         class="absolute right-0 bg-white shadow-lg rounded-md mt-2 py-2 w-64 text-sm z-50 border border-black/5"
+                        role="menu"
                     >
                         <li><NuxtLink to="/services" class="block px-4 py-2 hover:bg-brand-light" @click="closeAll">All Services</NuxtLink></li>
                         <li class="border-t mx-2 my-1"></li>

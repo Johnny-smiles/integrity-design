@@ -128,9 +128,10 @@
                         name="photos"
                         accept="image/*"
                         multiple
+                        aria-describedby="photo-help"
                         class="w-full border border-black/10 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-primary"
                     />
-                    <p class="text-sm text-neutral-600 mt-2">
+                    <p id="photo-help" class="text-sm text-neutral-600 mt-2">
                         Tip: Snap a wide shot of the room plus any features you want to highlight. Floor plans or sketches are also helpful.
                     </p>
                 </div>
