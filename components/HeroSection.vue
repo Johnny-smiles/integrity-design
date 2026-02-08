@@ -9,7 +9,7 @@
                     {{ siteConfig.hero.headline }}
                 </h1>
                 <p class="text-lg text-brand-dark/90 max-w-xl">
-                    Custom kitchens, baths, and basements with clear budgets and quality craft.
+                    Integrity Design + Build is a home remodeling company in White Bear Lake, MN that designs and builds custom kitchens, bathrooms, and basements for families across the Twin Cities east metro.
                 </p>
                 
                 <!-- Image placeholder: Hero image -->

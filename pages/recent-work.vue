@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main id="main">
     <section class="relative overflow-hidden bg-brand-dark text-white">
       <div class="absolute inset-y-0 right-0 w-1/2 bg-[radial-gradient(circle_at_top_left,_rgba(177,18,18,0.25),_transparent_60%)]" aria-hidden="true" />
       <div class="max-w-6xl mx-auto px-6 py-20 lg:py-24 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] items-center">
@@ -83,6 +83,17 @@ import { computed } from 'vue'
 import { useHead } from '#imports'
 import { siteConfig } from '~/site.config'
 
+usePageSeo({
+    title: 'Recent Projects | Integrity Design + Build',
+    description: 'Integrity Design + Build showcases recent kitchen, bathroom, and basement renovations crafted across the Twin Cities east metro.',
+    path: '/recent-work'
+})
+
+useBreadcrumbs([
+    { name: 'Home', path: '/' },
+    { name: 'Recent Work', path: '/recent-work' }
+])
+
 type CaseStudy = {
   title: string
   location: string
@@ -139,31 +150,12 @@ const caseStudies: CaseStudy[] = [
   }
 ]
 
-const pageDescription = 'Integrity Design + Build showcases recent kitchen, bathroom, and basement renovations crafted across the Twin Cities east metro.'
-
-useHead({
-  title: `Recent Projects | ${siteConfig.siteName}`,
-  meta: [
-    { name: 'description', content: pageDescription },
-    { property: 'og:title', content: `Recent Projects | ${siteConfig.siteName}` },
-    { property: 'og:description', content: pageDescription },
-    { property: 'og:image', content: `${siteConfig.siteUrl}${siteConfig.socialImage}` },
-    { property: 'og:url', content: `${siteConfig.siteUrl}/recent-work` },
-    { property: 'og:type', content: 'website' },
-    { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: `Recent Projects | ${siteConfig.siteName}` },
-    { name: 'twitter:description', content: pageDescription },
-    { name: 'twitter:image', content: `${siteConfig.siteUrl}${siteConfig.socialImage}` }
-  ],
-  link: [{ rel: 'canonical', href: `${siteConfig.siteUrl}/recent-work` }]
-})
-
 const structuredData = computed(() => ({
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
   '@id': `${siteConfig.siteUrl}/recent-work#collection`,
   name: `Recent projects by ${siteConfig.siteName}`,
-  description: pageDescription,
+  description: 'Integrity Design + Build showcases recent kitchen, bathroom, and basement renovations crafted across the Twin Cities east metro.',
   url: `${siteConfig.siteUrl}/recent-work`,
   hasPart: caseStudies.map(project => ({
     '@type': 'CreativeWork',

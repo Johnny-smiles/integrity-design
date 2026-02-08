@@ -1,4 +1,5 @@
 <template>
+  <main id="main">
   <section class="bg-white py-20">
     <div class="max-w-7xl mx-auto px-6">
       <div class="max-w-3xl mx-auto text-center mb-12 space-y-4">
@@ -14,9 +15,21 @@
       </div>
     </div>
   </section>
+  </main>
 </template>
 
 <script setup lang="ts">
 import ServiceCard from '~/components/ServiceCard.vue'
 import { services } from '~/data/services'
+
+usePageSeo({
+    title: 'Remodeling Services | Integrity Design + Build',
+    description: 'Explore kitchen, bathroom, and basement remodeling services from Integrity Design + Build in White Bear Lake and the Twin Cities east metro.',
+    path: '/services'
+})
+
+useBreadcrumbs([
+    { name: 'Home', path: '/' },
+    { name: 'Services', path: '/services' }
+])
 </script>

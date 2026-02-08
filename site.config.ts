@@ -15,8 +15,8 @@ export const siteConfig = {
         state: "MN",
         zip: "55110",
         country: "US",
-        latitude: "",    // optional
-        longitude: ""    // optional
+        latitude: "45.0631",
+        longitude: "-93.0101"
     },
 
     // Business meta

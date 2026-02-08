@@ -1,5 +1,5 @@
 <template>
-    <main>
+    <main id="main">
         <section class="max-w-5xl mx-auto px-6 py-20 space-y-6">
             <h1 class="text-4xl md:text-5xl font-bold mb-6">About {{ siteConfig.siteName }}</h1>
 
@@ -53,7 +53,55 @@
     </main>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { siteConfig } from '~/site.config'
+import { useHead } from '#imports'
+
+usePageSeo({
+    title: 'About Our Team | Integrity Design + Build',
+    description: 'Meet the Integrity Design + Build team in White Bear Lake, MN. We guide kitchen, bath, and whole-home remodels with clear budgets and collaborative design.',
+    path: '/about'
+})
+
+useBreadcrumbs([
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' }
+])
+
+// AboutPage + Organization structured data
+const sameAsLinks = Object.values(siteConfig.social || {}).filter((link): link is string => Boolean(link))
+
+const aboutPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    '@id': `${siteConfig.siteUrl}/about#aboutpage`,
+    name: `About ${siteConfig.siteName}`,
+    description: 'Meet the Integrity Design + Build team. We guide kitchen, bath, and whole-home remodels with clear budgets and collaborative design.',
+    url: `${siteConfig.siteUrl}/about`
+}
+
+const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': `${siteConfig.siteUrl}#organization`,
+    name: siteConfig.siteName,
+    url: siteConfig.siteUrl,
+    logo: `${siteConfig.siteUrl}/logo.png`,
+    contactPoint: {
+        '@type': 'ContactPoint',
+        telephone: siteConfig.phone,
+        contactType: 'sales',
+        areaServed: ['US'],
+        availableLanguage: ['English']
+    },
+    sameAs: sameAsLinks.length ? sameAsLinks : undefined
+}
+
+useHead({
+    script: [
+        { type: 'application/ld+json', innerHTML: JSON.stringify(aboutPageSchema) },
+        { type: 'application/ld+json', innerHTML: JSON.stringify(organizationSchema) }
+    ]
+})
 </script>
 

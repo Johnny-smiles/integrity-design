@@ -6,7 +6,7 @@
       <p class="max-w-3xl mx-auto text-lg text-brand-dark/80">
         From blank-slate lower levels to outdated rec rooms, Integrity Design + Build creates multi-purpose basements with moisture protection, smart storage, and purposeful lighting. Our integrated team plans layouts, coordinates inspections, and delivers craftsmanship that feels as polished as the main floor.
       </p>
-      
+
       <div class="image-placeholder aspect-[21/9] rounded-2xl max-w-5xl mx-auto my-8">
         <span>Featured Basement Finishing Photo</span>
       </div>
@@ -131,42 +131,40 @@
 import { siteConfig } from '~/site.config'
 import { useHead } from '#imports'
 
-const pageTitle = 'Basement Finishing | Integrity Design + Build'
-const pageDescription = 'Integrity Design + Build finishes lower levels in White Bear Lake and the Twin Cities with moisture-ready construction, flexible layouts, and cohesive design-build coordination.'
+usePageSeo({
+    title: 'Basement Finishing White Bear Lake | Integrity Design + Build',
+    description: 'Professional basement finishing in White Bear Lake, MN. Family rooms, home offices, and guest suites with moisture control and quality craft.',
+    path: '/services/basement-finishing'
+})
+
+useBreadcrumbs([
+    { name: 'Home', path: '/' },
+    { name: 'Services', path: '/services' },
+    { name: 'Basement Finishing', path: '/services/basement-finishing' }
+])
+
+const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${siteConfig.siteUrl}/services/basement-finishing#service`,
+    name: 'Basement Finishing',
+    description: 'Complete basement finishing including drywall, flooring, lighting, entertainment areas, offices, guest suites, and waterproofing solutions.',
+    url: `${siteConfig.siteUrl}/services/basement-finishing`,
+    serviceType: 'Basement Renovation',
+    provider: {
+        '@type': 'HomeAndConstructionBusiness',
+        name: siteConfig.siteName,
+        url: siteConfig.siteUrl,
+        telephone: siteConfig.phone
+    },
+    areaServed: siteConfig.serviceAreas.map(city => ({
+        '@type': 'City',
+        name: city,
+        containedInPlace: { '@type': 'State', name: 'Minnesota' }
+    }))
+}
 
 useHead({
-  title: pageTitle,
-  meta: [
-    { name: 'description', content: pageDescription },
-    { name: 'keywords', content: 'basement finishing, lower level remodel, White Bear Lake basement contractor, Twin Cities design build' },
-    { property: 'og:title', content: pageTitle },
-    { property: 'og:description', content: pageDescription },
-    { property: 'og:type', content: 'article' },
-    { property: 'og:url', content: `${siteConfig.siteUrl}/services/basement-finishing` },
-    { property: 'og:image', content: `${siteConfig.siteUrl}/images/basement-finishing.svg` },
-    { name: 'twitter:card', content: 'summary_large_image' }
-  ],
-  link: [{ rel: 'canonical', href: `${siteConfig.siteUrl}/services/basement-finishing` }],
-  script: [
-    {
-      type: 'application/ld+json',
-      children: JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'Service',
-        name: 'Basement Finishing',
-        serviceType: 'Basement Renovation',
-        provider: {
-          '@type': 'LocalBusiness',
-          name: siteConfig.siteName,
-          url: siteConfig.siteUrl,
-          telephone: siteConfig.phone,
-          areaServed: siteConfig.serviceAreas
-        },
-        areaServed: siteConfig.serviceAreas,
-        description: pageDescription,
-        url: `${siteConfig.siteUrl}/services/basement-finishing`
-      })
-    }
-  ]
+    script: [{ type: 'application/ld+json', innerHTML: JSON.stringify(serviceSchema) }]
 })
 </script>

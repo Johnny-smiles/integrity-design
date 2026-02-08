@@ -8,9 +8,7 @@ export default defineNuxtConfig({
             crawlLinks: true,
             failOnError: false, // keep going even if some links/images 404 during crawl
             ignore: [
-                '/_ipx/**',   // ignore IPX-transformed URLs
-                '/privacy',   // add these pages later
-                '/terms'
+                '/_ipx/**'    // ignore IPX-transformed URLs
             ]
             // If you want to lock down to explicit pages only, set crawlLinks:false and add routes:[...]
         }
@@ -28,18 +26,20 @@ export default defineNuxtConfig({
                     name: 'description',
                     content: 'Integrity Design + Build is a Twin Cities remodeling company specializing in kitchens, bathrooms, basements, and full-home renovations that elevate comfort and style.'
                 },
-                { name: 'robots', content: 'index, follow' },
+                { name: 'robots', content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' },
+                { name: 'author', content: 'Integrity Design + Build' },
 
                 /* Open Graph */
                 { property: 'og:title',       content: 'Integrity Design + Build — Renovations Designed Around Your Life' },
                 { property: 'og:description', content: 'Integrity Design + Build is a Twin Cities remodeling company specializing in kitchens, bathrooms, basements, and full-home renovations that elevate comfort and style.' },
                 { property: 'og:image',       content: 'https://integritydesignmn.com/logo.png' },
-                { property: 'og:image:width', content: '400' },
-                { property: 'og:image:height', content: '400' },
+                { property: 'og:image:width', content: '1200' },
+                { property: 'og:image:height', content: '630' },
                 { property: 'og:image:alt',    content: 'Integrity Design + Build Logo' },
                 { property: 'og:url',         content: 'https://integritydesignmn.com' },
                 { property: 'og:type',        content: 'website' },
                 { property: 'og:site_name',   content: 'Integrity Design + Build' },
+                { property: 'og:locale',      content: 'en_US' },
 
                 /* Twitter */
                 { name: 'twitter:card',        content: 'summary_large_image' },
@@ -49,8 +49,6 @@ export default defineNuxtConfig({
                 { name: 'twitter:image:alt',   content: 'Integrity Design + Build Logo' }
             ],
             link: [
-                { rel: 'canonical', href: 'https://integritydesignmn.com' },
-
                 // Fonts (no @nuxtjs/google-fonts needed)
                 { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
                 { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },

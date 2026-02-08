@@ -1,5 +1,5 @@
 <template>
-    <main>
+    <main id="main">
         <section class="max-w-4xl mx-auto px-6 py-20">
             <h1 class="text-4xl md:text-5xl font-bold mb-8">Request a Design Consultation</h1>
 
@@ -29,20 +29,24 @@
                 <!-- Contact info -->
                 <div class="grid md:grid-cols-2 gap-6">
                     <div>
-                        <label class="block font-medium mb-1">Name</label>
+                        <label for="contact-name" class="block font-medium mb-1">Name</label>
                         <input
+                            id="contact-name"
                             type="text"
                             name="name"
                             required
+                            autocomplete="name"
                             class="w-full border border-black/10 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-primary"
                         />
                     </div>
                     <div>
-                        <label class="block font-medium mb-1">Email</label>
+                        <label for="contact-email" class="block font-medium mb-1">Email</label>
                         <input
+                            id="contact-email"
                             type="email"
                             name="email"
                             required
+                            autocomplete="email"
                             class="w-full border border-black/10 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-primary"
                         />
                     </div>
@@ -50,11 +54,13 @@
 
                 <div class="grid md:grid-cols-2 gap-6">
                     <div>
-                        <label class="block font-medium mb-1">Phone</label>
+                        <label for="contact-phone" class="block font-medium mb-1">Phone</label>
                         <input
+                            id="contact-phone"
                             type="tel"
                             name="phone"
                             required
+                            autocomplete="tel"
                             class="w-full border border-black/10 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-primary"
                         />
                     </div>
@@ -178,7 +184,59 @@
 
 <script setup>
 import { ref, onMounted, computed } from 'vue'
+import { useHead } from '#imports'
 import { siteConfig } from '~/site.config'
+
+usePageSeo({
+    title: 'Request a Design Consultation | Integrity Design + Build',
+    description: 'Schedule a free design consultation with Integrity Design + Build. Serving White Bear Lake, Maplewood, Shoreview & St Paul. Call (651) 333-4043.',
+    path: '/contact'
+})
+
+useBreadcrumbs([
+    { name: 'Home', path: '/' },
+    { name: 'Contact', path: '/contact' }
+])
+
+// ContactPage + LocalBusiness structured data
+const contactPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    '@id': `${siteConfig.siteUrl}/contact#contactpage`,
+    name: `Contact ${siteConfig.siteName}`,
+    description: 'Request a design consultation for your kitchen, bathroom, or basement remodel.',
+    url: `${siteConfig.siteUrl}/contact`
+}
+
+const localBusinessSchema = {
+    '@context': 'https://schema.org',
+    '@type': siteConfig.businessType || 'LocalBusiness',
+    '@id': `${siteConfig.siteUrl}/#localbusiness`,
+    name: siteConfig.siteName,
+    telephone: siteConfig.phone,
+    email: siteConfig.email,
+    address: {
+        '@type': 'PostalAddress',
+        streetAddress: siteConfig.location.street,
+        addressLocality: siteConfig.location.city,
+        addressRegion: siteConfig.location.state,
+        postalCode: siteConfig.location.zip,
+        addressCountry: siteConfig.location.country
+    },
+    openingHoursSpecification: {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        opens: '08:00',
+        closes: '17:00'
+    }
+}
+
+useHead({
+    script: [
+        { type: 'application/ld+json', innerHTML: JSON.stringify(contactPageSchema) },
+        { type: 'application/ld+json', innerHTML: JSON.stringify(localBusinessSchema) }
+    ]
+})
 
 const showConfirmation = ref(false)
 

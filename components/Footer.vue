@@ -24,7 +24,12 @@
                     <li><NuxtLink to="/services"     class="hover:text-brand-primary">Services</NuxtLink></li>
                     <li><NuxtLink to="/services/deck-building" class="hover:text-brand-primary">Deck Building</NuxtLink></li>
                     <li><NuxtLink to="/recent-work"  class="hover:text-brand-primary">Recent&nbsp;Work</NuxtLink></li>
+                    <li><NuxtLink to="/faqs"         class="hover:text-brand-primary">FAQs</NuxtLink></li>
                     <li><NuxtLink to="/contact"      class="hover:text-brand-primary">Contact</NuxtLink></li>
+                </ul>
+                <ul class="list-none space-y-2 mt-4 text-sm text-brand-dark/60">
+                    <li><NuxtLink to="/privacy" class="hover:text-brand-primary">Privacy Policy</NuxtLink></li>
+                    <li><NuxtLink to="/terms"   class="hover:text-brand-primary">Terms of Service</NuxtLink></li>
                 </ul>
             </div>
 

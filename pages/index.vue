@@ -1,5 +1,5 @@
 <template>
-    <main class="flex flex-col bg-white">
+    <main id="main" class="flex flex-col bg-white">
         <!-- HERO (reuse your existing component) -->
         <HeroSection />
 
@@ -177,11 +177,20 @@ import HomepageServices from '~/components/HomepageServices.vue'
 import { siteConfig }   from '~/site.config'
 import { useHead }      from '#imports'
 
+usePageSeo({
+    title: 'Home Remodeling White Bear Lake | Integrity Design + Build',
+    description: 'Integrity Design + Build remodels kitchens, bathrooms & basements in White Bear Lake, Vadnais Heights, Maplewood & Shoreview. Call (651) 333-4043.',
+    path: '/'
+})
+
+useBreadcrumbs([{ name: 'Home', path: '/' }])
+
 /* ------------------------------------------------------------------
-   LocalBusiness structured data tailored for Integrity Design + Build
+   Structured data: LocalBusiness + Organization + WebSite + FAQPage
 -------------------------------------------------------------------*/
 const sameAsLinks = Object.values(siteConfig.social || {}).filter((link): link is string => Boolean(link))
-const structuredData = {
+
+const localBusinessSchema = {
     '@context': 'https://schema.org',
     '@type':    siteConfig.businessType || 'LocalBusiness',
     '@id':      `${siteConfig.siteUrl}/#localbusiness`,
@@ -190,7 +199,7 @@ const structuredData = {
     email:       siteConfig.email,
     telephone:   siteConfig.phone,
     description: siteConfig.description,
-    image:       siteConfig.socialImage ? `${siteConfig.siteUrl}${siteConfig.socialImage}` : undefined,
+    image:       `${siteConfig.siteUrl}/logo.png`,
     address: {
         '@type':           'PostalAddress',
         streetAddress:     siteConfig.location.street || undefined,
@@ -199,19 +208,93 @@ const structuredData = {
         postalCode:        siteConfig.location.zip,
         addressCountry:    siteConfig.location.country
     },
-    openingHours: siteConfig.hours,
-    areaServed:   siteConfig.serviceAreas,
+    openingHoursSpecification: {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        opens: '08:00',
+        closes: '17:00'
+    },
+    areaServed: siteConfig.serviceAreas.map(city => ({
+        '@type': 'City',
+        name: city,
+        containedInPlace: { '@type': 'State', name: 'Minnesota' }
+    })),
     sameAs:       sameAsLinks.length ? sameAsLinks : undefined,
     priceRange:   '$$$',
-    geo: siteConfig.location.latitude && siteConfig.location.longitude ? {
+    geo: {
         '@type':    'GeoCoordinates',
-        latitude:   siteConfig.location.latitude,
-        longitude:  siteConfig.location.longitude
-    } : undefined
+        latitude:   parseFloat(siteConfig.location.latitude),
+        longitude:  parseFloat(siteConfig.location.longitude)
+    },
+    hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Remodeling Services',
+        itemListElement: siteConfig.services.map(s => ({
+            '@type': 'Offer',
+            itemOffered: {
+                '@type': 'Service',
+                name: s.title,
+                description: s.blurb
+            }
+        }))
+    },
+    knowsAbout: [
+        'kitchen remodeling',
+        'bathroom remodeling',
+        'basement finishing',
+        'home renovation',
+        'design-build remodeling',
+        'Twin Cities home improvement'
+    ]
+}
+
+const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': `${siteConfig.siteUrl}#organization`,
+    name: siteConfig.siteName,
+    url: siteConfig.siteUrl,
+    logo: `${siteConfig.siteUrl}/logo.png`,
+    contactPoint: {
+        '@type': 'ContactPoint',
+        telephone: siteConfig.phone,
+        contactType: 'sales',
+        areaServed: ['US'],
+        availableLanguage: ['English']
+    },
+    sameAs: sameAsLinks.length ? sameAsLinks : undefined
+}
+
+const webSiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${siteConfig.siteUrl}#website`,
+    url: siteConfig.siteUrl,
+    name: siteConfig.siteName,
+    description: siteConfig.description,
+    publisher: { '@id': `${siteConfig.siteUrl}#organization` }
+}
+
+const faqPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: siteConfig.faqs.map(f => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: {
+            '@type': 'Answer',
+            text: f.a
+        }
+    }))
 }
 
 useHead({
-    script: [{ type: 'application/ld+json', children: JSON.stringify(structuredData) }]
+    script: [
+        { type: 'application/ld+json', innerHTML: JSON.stringify(localBusinessSchema) },
+        { type: 'application/ld+json', innerHTML: JSON.stringify(organizationSchema) },
+        { type: 'application/ld+json', innerHTML: JSON.stringify(webSiteSchema) },
+        { type: 'application/ld+json', innerHTML: JSON.stringify(faqPageSchema) }
+    ]
 })
 </script>
 

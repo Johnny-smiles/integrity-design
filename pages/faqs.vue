@@ -1,5 +1,5 @@
 <template>
-    <main>
+    <main id="main">
         <section class="max-w-5xl mx-auto px-6 py-20">
             <div class="text-center mb-12">
                 <h1 class="text-4xl md:text-5xl font-bold mb-4">Frequently Asked Questions</h1>
@@ -9,34 +9,18 @@
             </div>
 
             <div class="divide-y divide-black/10">
-                <div
+                <details
                     v-for="(q, i) in faqs"
                     :key="i"
-                    class="py-8"
+                    class="py-8 group"
+                    :open="i === 0 || undefined"
                 >
-                    <button
-                        class="w-full text-left flex items-center justify-between gap-6"
-                        @click="toggle(i)"
-                        :aria-expanded="openIndex === i"
-                        :aria-controls="`faq-panel-${i}`"
-                    >
-                        <h3 class="text-xl md:text-2xl font-semibold">
-                            {{ q.q }}
-                        </h3>
-                        <span
-                            class="text-brand-primary transition-transform select-none text-3xl leading-none"
-                            :class="openIndex === i ? 'rotate-45' : ''"
-                        >+</span>
-                    </button>
-
-                    <p
-                        v-if="openIndex === i"
-                        :id="`faq-panel-${i}`"
-                        class="mt-6 text-lg md:text-xl text-brand-dark/80"
-                    >
-                        {{ q.a }}
-                    </p>
-                </div>
+                    <summary class="cursor-pointer list-none flex items-center justify-between gap-6 [&::-webkit-details-marker]:hidden">
+                        <h3 class="text-xl md:text-2xl font-semibold">{{ q.q }}</h3>
+                        <span class="text-brand-primary transition-transform select-none text-3xl leading-none group-open:rotate-45">+</span>
+                    </summary>
+                    <p class="mt-6 text-lg md:text-xl text-brand-dark/80">{{ q.a }}</p>
+                </details>
             </div>
 
             <!-- CTA Section -->
@@ -63,6 +47,17 @@ import { ref } from 'vue'
 import { siteConfig } from '~/site.config'
 import { useHead } from '#imports'
 
+usePageSeo({
+    title: 'Remodeling FAQs | Integrity Design + Build',
+    description: 'Common questions about design-build remodeling, timelines, budgets, and service areas in the Twin Cities east metro. Get answers from Integrity Design + Build.',
+    path: '/faqs'
+})
+
+useBreadcrumbs([
+    { name: 'Home', path: '/' },
+    { name: 'FAQs', path: '/faqs' }
+])
+
 interface FAQ { q: string; a: string }
 
 const faqs: FAQ[] = [
@@ -88,19 +83,22 @@ const faqs: FAQ[] = [
     }
 ]
 
-const openIndex = ref<number | null>(0)
-function toggle(i: number) {
-    openIndex.value = openIndex.value === i ? null : i
+// FAQPage schema for this page's unique questions
+const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(f => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: {
+            '@type': 'Answer',
+            text: f.a
+        }
+    }))
 }
 
 useHead({
-    title: 'FAQs - Frequently Asked Questions',
-    meta: [
-        {
-            name: 'description',
-            content: 'Common questions about our remodeling services, design-build process, timelines, and service areas in the Twin Cities east metro.'
-        }
-    ]
+    script: [{ type: 'application/ld+json', innerHTML: JSON.stringify(faqSchema) }]
 })
 </script>
 

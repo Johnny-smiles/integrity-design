@@ -6,7 +6,7 @@
       <p class="max-w-3xl mx-auto text-lg text-brand-dark/80">
         Integrity Design + Build turns dated bathrooms into restorative retreats with moisture-smart construction, layered lighting, and fixtures selected for daily durability. One design-build team guides layouts, finish selections, permitting, and on-site craftsmanship so the process stays organized and calm.
       </p>
-      
+
       <div class="image-placeholder aspect-[21/9] rounded-2xl max-w-5xl mx-auto my-8">
         <span>Featured Bathroom Remodel Photo</span>
       </div>
@@ -131,42 +131,40 @@
 import { siteConfig } from '~/site.config'
 import { useHead } from '#imports'
 
-const pageTitle = 'Bathroom Remodeling | Integrity Design + Build'
-const pageDescription = 'Integrity Design + Build delivers spa-inspired bathroom remodels in White Bear Lake and the Twin Cities east metro with custom tile, premium fixtures, and moisture-smart construction.'
+usePageSeo({
+    title: 'Bathroom Remodeling White Bear Lake | Integrity Design + Build',
+    description: 'Spa-inspired bathroom remodels in White Bear Lake, MN. Custom vanities, tile work, and glass showers designed and built by one trusted team.',
+    path: '/services/bathroom-remodeling'
+})
+
+useBreadcrumbs([
+    { name: 'Home', path: '/' },
+    { name: 'Services', path: '/services' },
+    { name: 'Bathroom Remodeling', path: '/services/bathroom-remodeling' }
+])
+
+const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${siteConfig.siteUrl}/services/bathroom-remodeling#service`,
+    name: 'Bathroom Remodeling',
+    description: 'Spa-inspired bathroom remodels with custom tile, glass showers, modern vanities, and complete design-build project management.',
+    url: `${siteConfig.siteUrl}/services/bathroom-remodeling`,
+    serviceType: 'Bathroom Renovation',
+    provider: {
+        '@type': 'HomeAndConstructionBusiness',
+        name: siteConfig.siteName,
+        url: siteConfig.siteUrl,
+        telephone: siteConfig.phone
+    },
+    areaServed: siteConfig.serviceAreas.map(city => ({
+        '@type': 'City',
+        name: city,
+        containedInPlace: { '@type': 'State', name: 'Minnesota' }
+    }))
+}
 
 useHead({
-  title: pageTitle,
-  meta: [
-    { name: 'description', content: pageDescription },
-    { name: 'keywords', content: 'bathroom remodeling, spa bathroom design, Twin Cities bath contractor, White Bear Lake bathrooms' },
-    { property: 'og:title', content: pageTitle },
-    { property: 'og:description', content: pageDescription },
-    { property: 'og:type', content: 'article' },
-    { property: 'og:url', content: `${siteConfig.siteUrl}/services/bathroom-remodeling` },
-    { property: 'og:image', content: `${siteConfig.siteUrl}/images/bathroom-remodel.svg` },
-    { name: 'twitter:card', content: 'summary_large_image' }
-  ],
-  link: [{ rel: 'canonical', href: `${siteConfig.siteUrl}/services/bathroom-remodeling` }],
-  script: [
-    {
-      type: 'application/ld+json',
-      children: JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'Service',
-        name: 'Bathroom Remodeling',
-        serviceType: 'Bathroom Renovation',
-        provider: {
-          '@type': 'LocalBusiness',
-          name: siteConfig.siteName,
-          url: siteConfig.siteUrl,
-          telephone: siteConfig.phone,
-          areaServed: siteConfig.serviceAreas
-        },
-        areaServed: siteConfig.serviceAreas,
-        description: pageDescription,
-        url: `${siteConfig.siteUrl}/services/bathroom-remodeling`
-      })
-    }
-  ]
+    script: [{ type: 'application/ld+json', innerHTML: JSON.stringify(serviceSchema) }]
 })
 </script>

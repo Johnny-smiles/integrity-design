@@ -6,7 +6,7 @@
       <p class="max-w-3xl mx-auto text-lg text-brand-dark/80">
         We plan every renovation around the way you cook, host, and move through the space. From structural changes that open the main level to cabinetry systems that hide small appliances, each choice is coordinated by one design-build team so selections, schedule, and budget stay aligned.
       </p>
-      
+
       <!-- Image placeholder: Kitchen hero -->
       <div class="image-placeholder aspect-[21/9] rounded-2xl max-w-5xl mx-auto my-8">
         <span>Featured Kitchen Remodel Photo</span>
@@ -133,43 +133,40 @@
 import { siteConfig } from '~/site.config'
 import { useHead } from '#imports'
 
-const pageTitle = 'Kitchen Remodeling | Integrity Design + Build'
-const pageDescription = 'Integrity Design + Build plans chef-ready kitchen remodels in White Bear Lake and the Twin Cities with custom cabinetry, curated finishes, and a streamlined design-build process.'
+usePageSeo({
+    title: 'Kitchen Remodeling White Bear Lake | Integrity Design + Build',
+    description: 'Custom kitchen remodeling in White Bear Lake, MN. Modern layouts, cabinetry, and lighting designed around how your family lives. Call (651) 333-4043.',
+    path: '/services/kitchen-remodeling'
+})
+
+useBreadcrumbs([
+    { name: 'Home', path: '/' },
+    { name: 'Services', path: '/services' },
+    { name: 'Kitchen Remodeling', path: '/services/kitchen-remodeling' }
+])
+
+const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${siteConfig.siteUrl}/services/kitchen-remodeling#service`,
+    name: 'Kitchen Remodeling',
+    description: 'Custom kitchen remodeling with modern layouts, cabinetry, countertops, lighting, and appliance integration.',
+    url: `${siteConfig.siteUrl}/services/kitchen-remodeling`,
+    serviceType: 'Kitchen Renovation',
+    provider: {
+        '@type': 'HomeAndConstructionBusiness',
+        name: siteConfig.siteName,
+        url: siteConfig.siteUrl,
+        telephone: siteConfig.phone
+    },
+    areaServed: siteConfig.serviceAreas.map(city => ({
+        '@type': 'City',
+        name: city,
+        containedInPlace: { '@type': 'State', name: 'Minnesota' }
+    }))
+}
 
 useHead({
-  title: pageTitle,
-  meta: [
-    { name: 'description', content: pageDescription },
-    { name: 'keywords', content: 'kitchen remodeling, custom kitchens, White Bear Lake kitchen contractor, Twin Cities design build' },
-    { property: 'og:title', content: pageTitle },
-    { property: 'og:description', content: pageDescription },
-    { property: 'og:type', content: 'article' },
-    { property: 'og:url', content: `${siteConfig.siteUrl}/services/kitchen-remodeling` },
-    { property: 'og:image', content: `${siteConfig.siteUrl}/images/kitchen-remodel.svg` },
-    { name: 'twitter:card', content: 'summary_large_image' }
-  ],
-  link: [{ rel: 'canonical', href: `${siteConfig.siteUrl}/services/kitchen-remodeling` }],
-  script: [
-    {
-      type: 'application/ld+json',
-      children: JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'Service',
-        name: 'Kitchen Remodeling',
-        serviceType: 'Kitchen Renovation',
-        provider: {
-          '@type': 'LocalBusiness',
-          name: siteConfig.siteName,
-          url: siteConfig.siteUrl,
-          telephone: siteConfig.phone,
-          areaServed: siteConfig.serviceAreas
-        },
-        areaServed: siteConfig.serviceAreas,
-        description: pageDescription,
-        url: `${siteConfig.siteUrl}/services/kitchen-remodeling`
-      })
-    }
-  ]
+    script: [{ type: 'application/ld+json', innerHTML: JSON.stringify(serviceSchema) }]
 })
 </script>
-
