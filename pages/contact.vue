@@ -128,9 +128,10 @@
                         name="photos"
                         accept="image/*"
                         multiple
+                        aria-describedby="photo-help"
                         class="w-full border border-black/10 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-primary"
                     />
-                    <p class="text-sm text-neutral-600 mt-2">
+                    <p id="photo-help" class="text-sm text-neutral-600 mt-2">
                         Tip: Snap a wide shot of the room plus any features you want to highlight. Floor plans or sketches are also helpful.
                     </p>
                 </div>
@@ -149,7 +150,7 @@
                 <div class="flex flex-wrap gap-3">
                     <button type="submit" class="btn-primary">Submit Request</button>
                     <NuxtLink to="/" class="btn-outline">Back to Home</NuxtLink>
-                    <a :href="`tel:${phoneE164}`" class="btn-accent text-brand-dark">Or Call {{ phoneDisplay }}</a>
+                    <a :href="`tel:${phoneE164}`" class="btn-accent">Or Call {{ phoneDisplay }}</a>
                 </div>
             </form>
 
@@ -163,6 +164,12 @@
                     <a :href="smsHref" class="btn-primary">
                         Text {{ phoneDisplay }}
                     </a>
+                    <NuxtLink
+                        to="/services/deck-building"
+                        class="inline-flex items-center justify-center font-semibold rounded-md px-6 py-3 transition bg-white text-brand-primary hover:opacity-90 mt-3 md:mt-0 md:ml-3"
+                    >
+                        See Deck Building
+                    </NuxtLink>
                 </div>
             </div>
         </section>

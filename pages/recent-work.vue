@@ -1,14 +1,14 @@
 <template>
   <main>
     <section class="relative overflow-hidden bg-brand-dark text-white">
-      <div class="absolute inset-y-0 right-0 w-1/2 bg-[radial-gradient(circle_at_top_left,_rgba(234,179,8,0.35),_transparent_60%)]" aria-hidden="true" />
+      <div class="absolute inset-y-0 right-0 w-1/2 bg-[radial-gradient(circle_at_top_left,_rgba(177,18,18,0.25),_transparent_60%)]" aria-hidden="true" />
       <div class="max-w-6xl mx-auto px-6 py-20 lg:py-24 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] items-center">
         <div class="space-y-6">
           <p class="text-sm uppercase tracking-[0.4em] text-white/70">Recent Work</p>
           <h1 class="text-4xl md:text-5xl font-bold leading-tight">Renovations that feel considered in every detail</h1>
           <p class="text-lg text-white/80">A glimpse at kitchens, baths, and lower levels we recently completed across the Twin Cities east metro. Each project blends thoughtful design, organized selections, and craftsmanship that stands up to family life.</p>
           <div class="flex flex-wrap gap-3">
-            <NuxtLink to="/contact" class="btn-accent text-brand-dark">Book a Walk-Through</NuxtLink>
+            <NuxtLink to="/contact" class="btn-accent">Book a Walk-Through</NuxtLink>
             <NuxtLink to="/services" class="inline-flex items-center font-semibold underline underline-offset-4">
               View All Services
             </NuxtLink>
@@ -16,7 +16,9 @@
         </div>
         <div class="relative">
           <div class="rounded-3xl bg-white/10 backdrop-blur border border-white/20 p-6">
-            <NuxtImg src="/images/kitchen-remodel.svg" alt="Render of a modern kitchen renovation" class="rounded-2xl shadow-xl" />
+            <div class="image-placeholder aspect-[4/3] rounded-2xl">
+              <span>Featured Project Hero Image</span>
+            </div>
           </div>
         </div>
       </div>
@@ -29,16 +31,18 @@
       </div>
       <div class="grid gap-10 lg:grid-cols-3">
         <article v-for="project in caseStudies" :key="project.title" class="rounded-3xl border border-black/5 shadow-card overflow-hidden bg-white flex flex-col">
-          <NuxtImg :src="project.image" :alt="project.imageAlt" class="w-full h-52 object-cover" />
+          <div class="image-placeholder aspect-[16/9]">
+            <span>{{ project.title }} Photo</span>
+          </div>
           <div class="p-6 space-y-4 flex-1 flex flex-col">
             <div>
-              <p class="text-sm uppercase tracking-[0.3em] text-brand-accent">{{ project.location }}</p>
+              <p class="text-sm uppercase tracking-[0.3em] text-brand-primary">{{ project.location }}</p>
               <h3 class="text-2xl font-semibold mt-2">{{ project.title }}</h3>
             </div>
             <p class="text-brand-dark/75">{{ project.summary }}</p>
             <ul class="space-y-2 text-sm text-brand-dark/70">
               <li v-for="highlight in project.highlights" :key="highlight" class="flex items-start gap-2">
-                <span class="mt-1 inline-flex h-2 w-2 rounded-full bg-brand-accent" />
+                <span class="mt-1 inline-flex h-2 w-2 rounded-full bg-brand-primary" />
                 <span>{{ highlight }}</span>
               </li>
             </ul>
@@ -67,7 +71,7 @@
             <li>Charcoal tile, white oak vanities, and satin black plumbing.</li>
             <li>Layered lighting with soft whites and dimmable accents.</li>
           </ul>
-          <NuxtLink to="/contact" class="btn-accent text-brand-dark inline-flex mt-2">Share Your Vision</NuxtLink>
+          <NuxtLink to="/contact" class="btn-accent inline-flex mt-2">Share Your Vision</NuxtLink>
         </div>
       </div>
     </section>

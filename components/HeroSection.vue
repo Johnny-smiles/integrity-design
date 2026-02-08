@@ -1,7 +1,6 @@
 <template>
     <!-- Layout variant: catalog/sections.json -> HeroSection with-cta-band -->
     <section class="relative overflow-hidden bg-brand-light">
-        <div class="absolute inset-y-0 right-[-20%] w-[70%] bg-gradient-to-br from-red-600/70 to-red-800/10 rounded-full blur-3xl" aria-hidden="true" />
 
         <div class="relative max-w-7xl mx-auto px-6 py-16 md:py-20 grid gap-12 md:grid-cols-[1.1fr_0.9fr] items-center">
             <div class="space-y-6">
@@ -12,12 +11,23 @@
                 <p class="text-lg text-brand-dark/90 max-w-xl">
                     Custom kitchens, baths, and basements with clear budgets and quality craft.
                 </p>
-                <div class="flex flex-wrap gap-4">
-                    <a :href="`tel:${siteConfig.phone}`" class="btn-primary">
-                        {{ siteConfig.hero.ctaPrimaryLabel }}
-                    </a>
-                    <NuxtLink to="/contact" class="btn-accent text-white">
-                        {{ siteConfig.hero.ctaSecondaryLabel }}
+                
+                <!-- Image placeholder: Hero image -->
+                <div class="image-placeholder aspect-[16/9] rounded-xl md:hidden">
+                    <span>Featured Project Hero Image</span>
+                </div>
+
+                <div class="flex flex-col gap-4 w-fit">
+                    <div class="flex flex-wrap gap-4">
+                        <a :href="`tel:${siteConfig.phone}`" class="btn-primary">
+                            {{ siteConfig.hero.ctaPrimaryLabel }}
+                        </a>
+                        <NuxtLink to="/contact" class="btn-accent">
+                            {{ siteConfig.hero.ctaSecondaryLabel }}
+                        </NuxtLink>
+                    </div>
+                    <NuxtLink to="/services/deck-building" class="btn-outline w-full">
+                        Deck Building Services
                     </NuxtLink>
                 </div>
             </div>
@@ -34,7 +44,7 @@
                 </div>
                 <ul class="space-y-3 text-brand-dark/80">
                     <li v-for="(area, idx) in displayAreas" :key="idx" class="flex items-start gap-3">
-                        <span class="mt-1 inline-flex h-2 w-2 rounded-full bg-brand-accent" />
+                        <span class="mt-1 inline-flex h-2 w-2 rounded-full bg-brand-primary" />
                         <span>{{ area }}</span>
                     </li>
                 </ul>
@@ -43,7 +53,7 @@
                         <p class="text-xs uppercase tracking-[0.3em] text-white/60">Talk with a designer</p>
                         <p class="text-lg font-semibold">{{ siteConfig.phoneDisplay || prettyPhone }}</p>
                     </div>
-                    <a :href="`mailto:${siteConfig.email}`" class="btn-accent text-white">
+                    <a :href="`mailto:${siteConfig.email}`" class="inline-flex items-center justify-center font-semibold rounded-md px-6 py-3 transition border border-brand-primary text-white hover:bg-brand-primary/10">
                         Email Us
                     </a>
                 </div>
@@ -57,7 +67,7 @@
                     <p class="text-2xl font-semibold">Schedule a design walk-through</p>
                 </div>
                 <div class="flex flex-wrap gap-3">
-                    <NuxtLink to="/services/kitchen-remodeling" class="btn-accent text-white">
+                    <NuxtLink to="/services/kitchen-remodeling" class="inline-flex items-center justify-center font-semibold rounded-md px-6 py-3 transition border border-brand-primary text-white hover:bg-brand-primary/10">
                         View Kitchen Services
                     </NuxtLink>
                     <NuxtLink
@@ -88,3 +98,4 @@ const displayAreas = computed(() => {
     return areas.slice(0, 4)
 })
 </script>
+

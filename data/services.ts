@@ -13,6 +13,44 @@ export type Service = {
 
 export const services: Service[] = [
   {
+    slug: 'deck-building',
+    title: 'Deck Building',
+    summary: 'Engineered decks with premium framing, low-maintenance materials, and integrated lighting.',
+    metaDescription: 'Custom deck building for White Bear Lake and the Twin Cities east metro. Integrity Design + Build delivers engineered structures, premium materials, and cohesive outdoor living plans.',
+    keywords: ['deck building', 'custom decks', 'Twin Cities deck contractor'],
+    bullets: [
+      'Composite, PVC, or cedar decking with hidden fasteners',
+      'Powder-coated, cable, or glass railings with lighting',
+      'Permits, inspections, and integrated outdoor features'
+    ],
+    content: `
+      <section>
+        <h2>Custom Deck Building & Outdoor Living</h2>
+        <p>Every deck begins with a site walk to study views, setbacks, and how you plan to host. We engineer footing depth, ledger flashing, and framing spans for Minnesota weather, then pair finishes that complement your home.</p>
+        <ul>
+          <li>Design concepts with multi-level layouts, pergolas, or screen rooms.</li>
+          <li>TimberTech, Trex, or select cedar decking installed with hidden fasteners.</li>
+          <li>Integrated lighting scenes, heaters, privacy screens, and outdoor kitchens.</li>
+        </ul>
+        <p><strong>Thinking about an outdoor upgrade?</strong> Share photos of the current space and we will provide a concept, material palette, and schedule.</p>
+      </section>
+      <section>
+        <h3>Deck Building FAQs</h3>
+        <dl>
+          <dt>Do you handle permitting?</dt>
+          <dd>Yes. We coordinate permits, inspections, and HOA approvals start to finish.</dd>
+          <dt>Can you add covered or screened areas?</dt>
+          <dd>We regularly design pergolas, screen rooms, and dry-under systems that tie into your architecture.</dd>
+          <dt>What materials hold up best?</dt>
+          <dd>We guide you through composite, PVC, or cedar options based on maintenance preferences and budget.</dd>
+          <dt>Do you integrate lighting and audio?</dt>
+          <dd>Absolutely. We wire rail lighting, stair lights, heaters, speakers, and smart controls as part of the build.</dd>
+        </dl>
+      </section>
+    `,
+    image: '/images/deck-building.svg'
+  },
+  {
     slug: 'kitchen-remodeling',
     title: 'Kitchen Remodeling',
     summary: 'Custom kitchen renovations that balance beauty, efficiency, and craftsmanship.',

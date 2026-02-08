@@ -49,7 +49,7 @@
                     <a :href="`tel:${siteConfig.phone}`" class="btn-primary">
                         Call {{ siteConfig.phoneDisplay || siteConfig.phone }}
                     </a>
-                    <NuxtLink to="/contact" class="btn-accent text-white">
+                    <NuxtLink to="/contact" class="btn-accent">
                         Send Us a Message
                     </NuxtLink>
                 </div>
@@ -103,4 +103,5 @@ useHead({
     ]
 })
 </script>
+
 

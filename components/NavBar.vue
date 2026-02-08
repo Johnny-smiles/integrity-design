@@ -1,19 +1,19 @@
 <template>
     <!-- Top header -->
     <nav class="sticky top-0 z-50 bg-white border-b border-brand-dark/10">
-        <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between px-6">
             <!-- Logo (responsive) -->
-            <NuxtLink to="/" class="flex items-center gap-2 sm:gap-3">
-                <img src="/logo.png" :alt="`${siteConfig.siteName} Logo`" class="w-10 h-10 sm:w-12 sm:h-12 object-contain" />
-                <span class="font-semibold text-sm sm:text-base">{{ siteConfig.siteName }}</span>
+            <NuxtLink to="/" class="flex items-center gap-2 sm:gap-3 overflow-hidden">
+                <img src="/logo.png" :alt="`${siteConfig.siteName} Logo`" class="h-16 w-[200px] sm:h-20 sm:w-[250px] object-cover" />
+                <!-- <span class="font-semibold text-sm sm:text-base">{{ siteConfig.siteName }}</span> -->
             </NuxtLink>
 
             <!-- Mobile hamburger -->
             <button
-                class="sm:hidden flex flex-col gap-[6px] focus:outline-none"
+                class="sm:hidden flex flex-col gap-[6px] focus:outline-2 focus:outline-brand-primary p-2 rounded"
                 @click="toggleMain()"
                 :aria-expanded="isOpen.toString()"
-                aria-label="Toggle navigation"
+                aria-label="Toggle navigation menu"
             >
         <span class="w-6 h-[2px] bg-brand-primary transition-transform"
               :class="{ 'rotate-45 translate-y-[8px]': isOpen }" />
@@ -38,7 +38,7 @@
                 <!-- Services dropdown (desktop only, click-based) -->
                 <li class="relative hidden sm:block">
                     <button
-                        class="nav-link cursor-pointer hover:text-brand-primary select-none"
+                        class="nav-link cursor-pointer hover:text-brand-primary select-none whitespace-nowrap"
                         @click="toggleServices()"
                         @keydown.enter.space.prevent="toggleServices()"
                         :aria-expanded="servicesOpen.toString()"
@@ -49,6 +49,7 @@
                     <ul
                         v-if="servicesOpen"
                         class="absolute right-0 bg-white shadow-lg rounded-md mt-2 py-2 w-64 text-sm z-50 border border-black/5"
+                        role="menu"
                     >
                         <li><NuxtLink to="/services" class="block px-4 py-2 hover:bg-brand-light" @click="closeAll">All Services</NuxtLink></li>
                         <li class="border-t mx-2 my-1"></li>
@@ -79,10 +80,10 @@
 
                 <!-- CTA buttons (desktop) -->
                 <li class="hidden sm:block">
-                    <a :href="`tel:${siteConfig.phone}`" class="btn-primary mr-2 text-white">
+                    <a :href="`tel:${siteConfig.phone}`" class="btn-primary mr-2 text-white hidden lg:inline-flex">
                         Call {{ siteConfig.phoneDisplay || prettyPhone }}
                     </a>
-                    <NuxtLink to="/contact" class="btn-accent text-white">
+                    <NuxtLink to="/contact" class="btn-accent">
                         Plan&nbsp;Consultation
                     </NuxtLink>
                 </li>

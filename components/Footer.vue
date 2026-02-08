@@ -22,6 +22,7 @@
                 <ul class="list-none space-y-2">
                     <li><NuxtLink to="/about"        class="hover:text-brand-primary">About</NuxtLink></li>
                     <li><NuxtLink to="/services"     class="hover:text-brand-primary">Services</NuxtLink></li>
+                    <li><NuxtLink to="/services/deck-building" class="hover:text-brand-primary">Deck Building</NuxtLink></li>
                     <li><NuxtLink to="/recent-work"  class="hover:text-brand-primary">Recent&nbsp;Work</NuxtLink></li>
                     <li><NuxtLink to="/contact"      class="hover:text-brand-primary">Contact</NuxtLink></li>
                 </ul>
