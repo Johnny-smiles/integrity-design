@@ -13,7 +13,7 @@
 
       <div class="flex flex-wrap gap-3 justify-center mt-8">
         <NuxtLink to="/contact" class="btn-primary">Book a Bathroom Consult</NuxtLink>
-        <a :href="`tel:${siteConfig.phone}`" class="btn-accent">Call {{ siteConfig.phoneDisplay || siteConfig.phone }}</a>
+        <a :href="`tel:${siteConfig.phone}`" class="btn-accent">Call {{ siteConfig.phoneDisplay }}</a>
       </div>
     </section>
 
@@ -120,7 +120,7 @@
         <p class="text-white/85">Schedule a discovery visit and we&apos;ll deliver layout options, finish palettes, and a phased investment plan that fits your lifestyle.</p>
         <div class="flex flex-wrap gap-3 justify-center">
           <NuxtLink to="/contact" class="btn-primary">Book a Consultation</NuxtLink>
-          <a :href="`tel:${siteConfig.phone}`" class="btn-accent">Call {{ siteConfig.phoneDisplay || siteConfig.phone }}</a>
+          <a :href="`tel:${siteConfig.phone}`" class="btn-accent">Call {{ siteConfig.phoneDisplay }}</a>
         </div>
       </div>
     </section>
@@ -143,28 +143,17 @@ useBreadcrumbs([
     { name: 'Bathroom Remodeling', path: '/services/bathroom-remodeling' }
 ])
 
-const serviceSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    '@id': `${siteConfig.siteUrl}/services/bathroom-remodeling#service`,
-    name: 'Bathroom Remodeling',
-    description: 'Spa-inspired bathroom remodels with custom tile, glass showers, modern vanities, and complete design-build project management.',
-    url: `${siteConfig.siteUrl}/services/bathroom-remodeling`,
-    serviceType: 'Bathroom Renovation',
-    provider: {
-        '@type': 'HomeAndConstructionBusiness',
-        name: siteConfig.siteName,
-        url: siteConfig.siteUrl,
-        telephone: siteConfig.phone
-    },
-    areaServed: siteConfig.serviceAreas.map(city => ({
-        '@type': 'City',
-        name: city,
-        containedInPlace: { '@type': 'State', name: 'Minnesota' }
-    }))
-}
+const { getServiceSchema } = useSchema()
 
 useHead({
-    script: [{ type: 'application/ld+json', innerHTML: JSON.stringify(serviceSchema) }]
+    script: [{
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify(getServiceSchema({
+            slug: 'bathroom-remodeling',
+            title: 'Bathroom Remodeling',
+            description: 'Spa-inspired bathroom remodels with custom tile, glass showers, modern vanities, and complete design-build project management.',
+            serviceType: 'Bathroom Renovation'
+        }))
+    }]
 })
 </script>

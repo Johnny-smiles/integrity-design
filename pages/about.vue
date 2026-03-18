@@ -69,38 +69,12 @@ useBreadcrumbs([
 ])
 
 // AboutPage + Organization structured data
-const sameAsLinks = Object.values(siteConfig.social || {}).filter((link): link is string => Boolean(link))
-
-const aboutPageSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'AboutPage',
-    '@id': `${siteConfig.siteUrl}/about#aboutpage`,
-    name: `About ${siteConfig.siteName}`,
-    description: 'Meet the Integrity Design + Build team. We guide kitchen, bath, and whole-home remodels with clear budgets and collaborative design.',
-    url: `${siteConfig.siteUrl}/about`
-}
-
-const organizationSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    '@id': `${siteConfig.siteUrl}#organization`,
-    name: siteConfig.siteName,
-    url: siteConfig.siteUrl,
-    logo: `${siteConfig.siteUrl}/logo.png`,
-    contactPoint: {
-        '@type': 'ContactPoint',
-        telephone: siteConfig.phone,
-        contactType: 'sales',
-        areaServed: ['US'],
-        availableLanguage: ['English']
-    },
-    sameAs: sameAsLinks.length ? sameAsLinks : undefined
-}
+const { getAboutPageSchema, getOrganizationSchema } = useSchema()
 
 useHead({
     script: [
-        { type: 'application/ld+json', innerHTML: JSON.stringify(aboutPageSchema) },
-        { type: 'application/ld+json', innerHTML: JSON.stringify(organizationSchema) }
+        { type: 'application/ld+json', innerHTML: JSON.stringify(getAboutPageSchema()) },
+        { type: 'application/ld+json', innerHTML: JSON.stringify(getOrganizationSchema()) }
     ]
 })
 </script>

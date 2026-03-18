@@ -81,7 +81,7 @@
                 <!-- CTA buttons (desktop) -->
                 <li class="hidden sm:block">
                     <a :href="`tel:${siteConfig.phone}`" class="btn-primary mr-2 text-white hidden lg:inline-flex">
-                        Call {{ siteConfig.phoneDisplay || prettyPhone }}
+                        Call {{ siteConfig.phoneDisplay }}
                     </a>
                     <NuxtLink to="/contact" class="btn-accent">
                         Plan&nbsp;Consultation
@@ -93,19 +93,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { siteConfig } from '~/site.config'
 import { services } from '~/data/services'
 
 const isOpen = ref(false)
 const servicesOpen = ref(false)
-
-const prettyPhone = computed(() => {
-    const digits = (siteConfig.phone || '').replace(/[^0-9]/g, '')
-    if (digits.length === 11 && digits.startsWith('1')) return `(${digits.slice(1,4)}) ${digits.slice(4,7)}-${digits.slice(7)}`
-    if (digits.length === 10) return `(${digits.slice(0,3)}) ${digits.slice(3,6)}-${digits.slice(6)}`
-    return siteConfig.phone
-})
 
 function toggleMain() {
     isOpen.value = !isOpen.value

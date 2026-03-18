@@ -31,7 +31,7 @@
                 </p>
                 <div class="flex flex-wrap justify-center gap-4">
                     <a :href="`tel:${siteConfig.phone}`" class="btn-primary">
-                        Call {{ siteConfig.phoneDisplay || siteConfig.phone }}
+                        Call {{ siteConfig.phoneDisplay }}
                     </a>
                     <NuxtLink to="/contact" class="btn-accent">
                         Send Us a Message
@@ -43,7 +43,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import { siteConfig } from '~/site.config'
 import { useHead } from '#imports'
 
@@ -83,22 +82,11 @@ const faqs: FAQ[] = [
     }
 ]
 
-// FAQPage schema for this page's unique questions
-const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqs.map(f => ({
-        '@type': 'Question',
-        name: f.q,
-        acceptedAnswer: {
-            '@type': 'Answer',
-            text: f.a
-        }
-    }))
-}
+// FAQPage schema
+const { getFAQPageSchema } = useSchema()
 
 useHead({
-    script: [{ type: 'application/ld+json', innerHTML: JSON.stringify(faqSchema) }]
+    script: [{ type: 'application/ld+json', innerHTML: JSON.stringify(getFAQPageSchema(faqs)) }]
 })
 </script>
 

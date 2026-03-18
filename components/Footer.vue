@@ -49,33 +49,17 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
 import { siteConfig } from '~/site.config'
 
-const brandName = computed(() => siteConfig.siteName || 'Integrity Design + Build')
-const email = computed(() => siteConfig.email || 'info@integritydesignmn.com')
+const brandName = siteConfig.siteName || 'Integrity Design + Build'
+const email = siteConfig.email || 'info@integritydesignmn.com'
+const phoneDisplay = siteConfig.phoneDisplay || siteConfig.phone
+const phoneE164 = siteConfig.phone
 
-const phoneDisplay = computed(() => {
-    // prefer a display value if present
-    const disp = (siteConfig as any).phoneDisplay
-    if (disp) return disp
-    const raw = (siteConfig.phone || '').replace(/[^0-9]/g, '')
-    if (raw.length === 11 && raw.startsWith('1')) return `(${raw.slice(1,4)}) ${raw.slice(4,7)}-${raw.slice(7)}`
-    if (raw.length === 10) return `(${raw.slice(0,3)}) ${raw.slice(3,6)}-${raw.slice(6)}`
-    return siteConfig.phone || ''
-})
-const phoneE164 = computed(() => {
-    const raw = (siteConfig.phone || '').replace(/[^0-9]/g, '')
-    if (!raw) return ''
-    if (raw.startsWith('1') && raw.length === 11) return `+${raw}`
-    if (raw.length === 10) return `+1${raw}`
-    return `+${raw}`
-})
-
-const addressLine = computed(() => {
-    const loc = siteConfig.location || {}
-    if (loc.street) return `${loc.street}, ${loc.city}, ${loc.state} ${loc.zip}`
-    if (loc.city && loc.state) return `${loc.city}, ${loc.state} ${loc.zip || ''}`.trim()
-    return ''
-})
+const loc = siteConfig.location || {} as typeof siteConfig.location
+const addressLine = loc.street
+    ? `${loc.street}, ${loc.city}, ${loc.state} ${loc.zip}`
+    : loc.city && loc.state
+        ? `${loc.city}, ${loc.state} ${loc.zip || ''}`.trim()
+        : ''
 </script>

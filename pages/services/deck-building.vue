@@ -13,7 +13,7 @@
 
       <div class="flex flex-wrap gap-3 justify-center mt-8">
         <NuxtLink to="/contact" class="btn-primary">Schedule a Deck Consult</NuxtLink>
-        <a :href="`tel:${siteConfig.phone}`" class="btn-accent">Call {{ siteConfig.phoneDisplay || siteConfig.phone }}</a>
+        <a :href="`tel:${siteConfig.phone}`" class="btn-accent">Call {{ siteConfig.phoneDisplay }}</a>
       </div>
     </section>
 
@@ -116,7 +116,7 @@
         <p class="text-white/85">Tell us how you plan to use the space and we&apos;ll provide a concept, budget range, and build schedule.</p>
         <div class="flex flex-wrap gap-3 justify-center">
           <NuxtLink to="/contact" class="btn-primary">Book a Consultation</NuxtLink>
-          <a :href="`tel:${siteConfig.phone}`" class="btn-accent">Call {{ siteConfig.phoneDisplay || siteConfig.phone }}</a>
+          <a :href="`tel:${siteConfig.phone}`" class="btn-accent">Call {{ siteConfig.phoneDisplay }}</a>
         </div>
       </div>
     </section>
@@ -127,42 +127,30 @@
 import { siteConfig } from '~/site.config'
 import { useHead } from '#imports'
 
-const pageTitle = 'Deck Building | Integrity Design + Build'
-const pageDescription = 'Integrity Design + Build crafts custom deck builds in White Bear Lake and the Twin Cities east metro with engineered framing, premium materials, and seamless project management.'
+usePageSeo({
+    title: 'Deck Building | Integrity Design + Build',
+    description: 'Integrity Design + Build crafts custom deck builds in White Bear Lake and the Twin Cities east metro with engineered framing, premium materials, and seamless project management.',
+    path: '/services/deck-building',
+    ogImage: '/images/deck-building.svg'
+})
+
+useBreadcrumbs([
+    { name: 'Home', path: '/' },
+    { name: 'Services', path: '/services' },
+    { name: 'Deck Building', path: '/services/deck-building' }
+])
+
+const { getServiceSchema } = useSchema()
 
 useHead({
-  title: pageTitle,
-  meta: [
-    { name: 'description', content: pageDescription },
-    { name: 'keywords', content: 'deck building, composite deck contractor, outdoor living Twin Cities, White Bear Lake decks' },
-    { property: 'og:title', content: pageTitle },
-    { property: 'og:description', content: pageDescription },
-    { property: 'og:type', content: 'article' },
-    { property: 'og:url', content: `${siteConfig.siteUrl}/services/deck-building` },
-    { property: 'og:image', content: `${siteConfig.siteUrl}/images/deck-building.svg` },
-    { name: 'twitter:card', content: 'summary_large_image' }
-  ],
-  link: [{ rel: 'canonical', href: `${siteConfig.siteUrl}/services/deck-building` }],
-  script: [
-    {
-      type: 'application/ld+json',
-      children: JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'Service',
-        name: 'Deck Building',
-        serviceType: 'Custom Deck Construction',
-        provider: {
-          '@type': 'LocalBusiness',
-          name: siteConfig.siteName,
-          url: siteConfig.siteUrl,
-          telephone: siteConfig.phone,
-          areaServed: siteConfig.serviceAreas
-        },
-        areaServed: siteConfig.serviceAreas,
-        description: pageDescription,
-        url: `${siteConfig.siteUrl}/services/deck-building`
-      })
-    }
-  ]
+    script: [{
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify(getServiceSchema({
+            slug: 'deck-building',
+            title: 'Deck Building',
+            description: 'Integrity Design + Build crafts custom deck builds in White Bear Lake and the Twin Cities east metro with engineered framing, premium materials, and seamless project management.',
+            serviceType: 'Custom Deck Construction'
+        }))
+    }]
 })
 </script>

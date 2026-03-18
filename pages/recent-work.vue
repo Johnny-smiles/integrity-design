@@ -79,7 +79,6 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
 import { useHead } from '#imports'
 import { siteConfig } from '~/site.config'
 
@@ -150,7 +149,7 @@ const caseStudies: CaseStudy[] = [
   }
 ]
 
-const structuredData = computed(() => ({
+const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
   '@id': `${siteConfig.siteUrl}/recent-work#collection`,
@@ -175,9 +174,9 @@ const structuredData = computed(() => ({
       }
     }
   }))
-}))
+}
 
 useHead({
-  script: [{ type: 'application/ld+json', children: JSON.stringify(structuredData.value) }]
+  script: [{ type: 'application/ld+json', innerHTML: JSON.stringify(structuredData) }]
 })
 </script>

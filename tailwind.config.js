@@ -23,7 +23,7 @@ export default {
             },
             fontFamily: {
                 heading: ['\"Playfair Display\"', 'serif'],
-                body: ['Inter', 'system-ui', 'sans-serif'],
+                body: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
             },
             container: { center: true, padding: '1.5rem' },
             borderRadius: { '2xl': '1rem' },
@@ -48,7 +48,7 @@ export default {
 
             addBase({
                 'html, body': {
-                    fontFamily: toStack(body, 'Inter,system-ui,sans-serif'),
+                    fontFamily: toStack(body, '"Plus Jakarta Sans",system-ui,sans-serif'),
                     WebkitFontSmoothing: 'antialiased',
                     MozOsxFontSmoothing: 'grayscale',
                 },

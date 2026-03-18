@@ -51,7 +51,7 @@
                 <div class="mt-8 rounded-2xl bg-brand-dark text-white px-5 py-4 flex items-center justify-between gap-3">
                     <div>
                         <p class="text-xs uppercase tracking-[0.3em] text-white/60">Talk with a designer</p>
-                        <p class="text-lg font-semibold">{{ siteConfig.phoneDisplay || prettyPhone }}</p>
+                        <p class="text-lg font-semibold">{{ siteConfig.phoneDisplay }}</p>
                     </div>
                     <a :href="`mailto:${siteConfig.email}`" class="inline-flex items-center justify-center font-semibold rounded-md px-6 py-3 transition border border-brand-primary text-white hover:bg-brand-primary/10">
                         Email Us
@@ -83,19 +83,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
 import { siteConfig } from '~/site.config'
 
-const prettyPhone = computed(() => {
-    const digits = (siteConfig.phone || '').replace(/[^0-9]/g, '')
-    if (digits.length === 11 && digits.startsWith('1')) return `(${digits.slice(1,4)}) ${digits.slice(4,7)}-${digits.slice(7)}`
-    if (digits.length === 10) return `(${digits.slice(0,3)}) ${digits.slice(3,6)}-${digits.slice(6)}`
-    return siteConfig.phone
-})
-
-const displayAreas = computed(() => {
-    const areas = Array.isArray(siteConfig.serviceAreas) ? siteConfig.serviceAreas : []
-    return areas.slice(0, 4)
-})
+const displayAreas = (siteConfig.serviceAreas || []).slice(0, 4)
 </script>
 

@@ -13,7 +13,7 @@
 
       <div class="flex flex-wrap gap-3 justify-center mt-8">
         <NuxtLink to="/contact" class="btn-primary">Book a Basement Consult</NuxtLink>
-        <a :href="`tel:${siteConfig.phone}`" class="btn-accent">Call {{ siteConfig.phoneDisplay || siteConfig.phone }}</a>
+        <a :href="`tel:${siteConfig.phone}`" class="btn-accent">Call {{ siteConfig.phoneDisplay }}</a>
       </div>
     </section>
 
@@ -120,7 +120,7 @@
         <p class="text-white/85">Schedule a discovery visit and we&apos;ll outline concept layouts, moisture strategies, and a phased investment range tailored to your priorities.</p>
         <div class="flex flex-wrap gap-3 justify-center">
           <NuxtLink to="/contact" class="btn-primary">Book a Consultation</NuxtLink>
-          <a :href="`tel:${siteConfig.phone}`" class="btn-accent">Call {{ siteConfig.phoneDisplay || siteConfig.phone }}</a>
+          <a :href="`tel:${siteConfig.phone}`" class="btn-accent">Call {{ siteConfig.phoneDisplay }}</a>
         </div>
       </div>
     </section>
@@ -143,28 +143,17 @@ useBreadcrumbs([
     { name: 'Basement Finishing', path: '/services/basement-finishing' }
 ])
 
-const serviceSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    '@id': `${siteConfig.siteUrl}/services/basement-finishing#service`,
-    name: 'Basement Finishing',
-    description: 'Complete basement finishing including drywall, flooring, lighting, entertainment areas, offices, guest suites, and waterproofing solutions.',
-    url: `${siteConfig.siteUrl}/services/basement-finishing`,
-    serviceType: 'Basement Renovation',
-    provider: {
-        '@type': 'HomeAndConstructionBusiness',
-        name: siteConfig.siteName,
-        url: siteConfig.siteUrl,
-        telephone: siteConfig.phone
-    },
-    areaServed: siteConfig.serviceAreas.map(city => ({
-        '@type': 'City',
-        name: city,
-        containedInPlace: { '@type': 'State', name: 'Minnesota' }
-    }))
-}
+const { getServiceSchema } = useSchema()
 
 useHead({
-    script: [{ type: 'application/ld+json', innerHTML: JSON.stringify(serviceSchema) }]
+    script: [{
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify(getServiceSchema({
+            slug: 'basement-finishing',
+            title: 'Basement Finishing',
+            description: 'Complete basement finishing including drywall, flooring, lighting, entertainment areas, offices, guest suites, and waterproofing solutions.',
+            serviceType: 'Basement Renovation'
+        }))
+    }]
 })
 </script>

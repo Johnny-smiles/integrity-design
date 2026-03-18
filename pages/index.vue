@@ -50,7 +50,7 @@
                         Whether it is a Maplewood bungalow or a Shoreview walkout, we combine thoughtful design, organized selections, and respectful crews so every phase feels calm and coordinated.
                     </p>
                     <div class="mt-6 flex flex-wrap gap-3">
-                        <a :href="`tel:${siteConfig.phone}`" class="btn-primary">Call {{ siteConfig.phoneDisplay || siteConfig.phone }}</a>
+                        <a :href="`tel:${siteConfig.phone}`" class="btn-primary">Call {{ siteConfig.phoneDisplay }}</a>
                         <NuxtLink to="/contact" class="btn-accent">Plan Your Remodel</NuxtLink>
                         <NuxtLink to="/services/deck-building" class="btn-outline">Deck Building Services</NuxtLink>
                     </div>
@@ -128,7 +128,7 @@
                         <p class="mt-2 text-white/90">Reserve a design discovery visit and we’ll map selections, budget, and timeline together.</p>
                     </div>
                     <div class="flex gap-3">
-                        <a :href="`tel:${siteConfig.phone}`" class="btn-primary">Call {{ siteConfig.phoneDisplay || siteConfig.phone }}</a>
+                        <a :href="`tel:${siteConfig.phone}`" class="btn-primary">Call {{ siteConfig.phoneDisplay }}</a>
                         <NuxtLink to="/contact" class="btn-accent">Book a Visit</NuxtLink>
                         <NuxtLink
                             to="/services/deck-building"
@@ -185,115 +185,15 @@ usePageSeo({
 
 useBreadcrumbs([{ name: 'Home', path: '/' }])
 
-/* ------------------------------------------------------------------
-   Structured data: LocalBusiness + Organization + WebSite + FAQPage
--------------------------------------------------------------------*/
-const sameAsLinks = Object.values(siteConfig.social || {}).filter((link): link is string => Boolean(link))
-
-const localBusinessSchema = {
-    '@context': 'https://schema.org',
-    '@type':    siteConfig.businessType || 'LocalBusiness',
-    '@id':      `${siteConfig.siteUrl}/#localbusiness`,
-    name:        siteConfig.siteName,
-    url:         siteConfig.siteUrl,
-    email:       siteConfig.email,
-    telephone:   siteConfig.phone,
-    description: siteConfig.description,
-    image:       `${siteConfig.siteUrl}/logo.png`,
-    address: {
-        '@type':           'PostalAddress',
-        streetAddress:     siteConfig.location.street || undefined,
-        addressLocality:   siteConfig.location.city,
-        addressRegion:     siteConfig.location.state,
-        postalCode:        siteConfig.location.zip,
-        addressCountry:    siteConfig.location.country
-    },
-    openingHoursSpecification: {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-        opens: '08:00',
-        closes: '17:00'
-    },
-    areaServed: siteConfig.serviceAreas.map(city => ({
-        '@type': 'City',
-        name: city,
-        containedInPlace: { '@type': 'State', name: 'Minnesota' }
-    })),
-    sameAs:       sameAsLinks.length ? sameAsLinks : undefined,
-    priceRange:   '$$$',
-    geo: {
-        '@type':    'GeoCoordinates',
-        latitude:   parseFloat(siteConfig.location.latitude),
-        longitude:  parseFloat(siteConfig.location.longitude)
-    },
-    hasOfferCatalog: {
-        '@type': 'OfferCatalog',
-        name: 'Remodeling Services',
-        itemListElement: siteConfig.services.map(s => ({
-            '@type': 'Offer',
-            itemOffered: {
-                '@type': 'Service',
-                name: s.title,
-                description: s.blurb
-            }
-        }))
-    },
-    knowsAbout: [
-        'kitchen remodeling',
-        'bathroom remodeling',
-        'basement finishing',
-        'home renovation',
-        'design-build remodeling',
-        'Twin Cities home improvement'
-    ]
-}
-
-const organizationSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    '@id': `${siteConfig.siteUrl}#organization`,
-    name: siteConfig.siteName,
-    url: siteConfig.siteUrl,
-    logo: `${siteConfig.siteUrl}/logo.png`,
-    contactPoint: {
-        '@type': 'ContactPoint',
-        telephone: siteConfig.phone,
-        contactType: 'sales',
-        areaServed: ['US'],
-        availableLanguage: ['English']
-    },
-    sameAs: sameAsLinks.length ? sameAsLinks : undefined
-}
-
-const webSiteSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    '@id': `${siteConfig.siteUrl}#website`,
-    url: siteConfig.siteUrl,
-    name: siteConfig.siteName,
-    description: siteConfig.description,
-    publisher: { '@id': `${siteConfig.siteUrl}#organization` }
-}
-
-const faqPageSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: siteConfig.faqs.map(f => ({
-        '@type': 'Question',
-        name: f.q,
-        acceptedAnswer: {
-            '@type': 'Answer',
-            text: f.a
-        }
-    }))
-}
+/* Structured data: LocalBusiness + Organization + WebSite + FAQPage */
+const { getLocalBusinessSchema, getOrganizationSchema, getWebSiteSchema, getFAQPageSchema } = useSchema()
 
 useHead({
     script: [
-        { type: 'application/ld+json', innerHTML: JSON.stringify(localBusinessSchema) },
-        { type: 'application/ld+json', innerHTML: JSON.stringify(organizationSchema) },
-        { type: 'application/ld+json', innerHTML: JSON.stringify(webSiteSchema) },
-        { type: 'application/ld+json', innerHTML: JSON.stringify(faqPageSchema) }
+        { type: 'application/ld+json', innerHTML: JSON.stringify(getLocalBusinessSchema()) },
+        { type: 'application/ld+json', innerHTML: JSON.stringify(getOrganizationSchema()) },
+        { type: 'application/ld+json', innerHTML: JSON.stringify(getWebSiteSchema()) },
+        { type: 'application/ld+json', innerHTML: JSON.stringify(getFAQPageSchema(siteConfig.faqs)) }
     ]
 })
 </script>

@@ -183,7 +183,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useHead } from '#imports'
 import { siteConfig } from '~/site.config'
 
@@ -199,42 +199,12 @@ useBreadcrumbs([
 ])
 
 // ContactPage + LocalBusiness structured data
-const contactPageSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'ContactPage',
-    '@id': `${siteConfig.siteUrl}/contact#contactpage`,
-    name: `Contact ${siteConfig.siteName}`,
-    description: 'Request a design consultation for your kitchen, bathroom, or basement remodel.',
-    url: `${siteConfig.siteUrl}/contact`
-}
-
-const localBusinessSchema = {
-    '@context': 'https://schema.org',
-    '@type': siteConfig.businessType || 'LocalBusiness',
-    '@id': `${siteConfig.siteUrl}/#localbusiness`,
-    name: siteConfig.siteName,
-    telephone: siteConfig.phone,
-    email: siteConfig.email,
-    address: {
-        '@type': 'PostalAddress',
-        streetAddress: siteConfig.location.street,
-        addressLocality: siteConfig.location.city,
-        addressRegion: siteConfig.location.state,
-        postalCode: siteConfig.location.zip,
-        addressCountry: siteConfig.location.country
-    },
-    openingHoursSpecification: {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-        opens: '08:00',
-        closes: '17:00'
-    }
-}
+const { getContactPageSchema, getLocalBusinessSchema } = useSchema()
 
 useHead({
     script: [
-        { type: 'application/ld+json', innerHTML: JSON.stringify(contactPageSchema) },
-        { type: 'application/ld+json', innerHTML: JSON.stringify(localBusinessSchema) }
+        { type: 'application/ld+json', innerHTML: JSON.stringify(getContactPageSchema()) },
+        { type: 'application/ld+json', innerHTML: JSON.stringify(getLocalBusinessSchema()) }
     ]
 })
 
@@ -253,25 +223,7 @@ onMounted(() => {
 })
 
 // Phone helpers for CTAs
-const phoneRaw = computed(() => siteConfig.phone || '')
-const phoneDisplay = computed(() => {
-    if ((siteConfig).phoneDisplay) return (siteConfig).phoneDisplay
-    const digits = (phoneRaw.value || '').replace(/[^0-9]/g, '')
-    if (digits.length === 11 && digits.startsWith('1')) return `(${digits.slice(1,4)}) ${digits.slice(4,7)}-${digits.slice(7)}`
-    if (digits.length === 10) return `(${digits.slice(0,3)}) ${digits.slice(3,6)}-${digits.slice(6)}`
-    return phoneRaw.value
-})
-
-const phoneE164 = computed(() => {
-    const digits = (phoneRaw.value || '').replace(/[^0-9]/g, '')
-    if (!digits) return ''
-    if (digits.startsWith('1') && digits.length === 11) return `+${digits}`
-    if (digits.length === 10) return `+1${digits}`
-    return phoneRaw.value
-})
-
-const smsHref = computed(() => {
-    const encodedName = encodeURIComponent(siteConfig.siteName || 'Integrity Design + Build')
-    return `sms:${phoneE164.value}?body=Hi%20${encodedName}%2C%20let%27s%20plan%20a%20remodel.`
-})
+const phoneDisplay = siteConfig.phoneDisplay || siteConfig.phone
+const phoneE164 = siteConfig.phone
+const smsHref = `sms:${phoneE164}?body=${encodeURIComponent(`Hi ${siteConfig.siteName}, let's plan a remodel.`)}`
 </script>

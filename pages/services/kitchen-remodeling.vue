@@ -14,7 +14,7 @@
 
       <div class="flex flex-wrap gap-3 justify-center mt-8">
         <NuxtLink to="/contact" class="btn-primary">Book a Kitchen Walk-Through</NuxtLink>
-        <a :href="`tel:${siteConfig.phone}`" class="btn-accent">Call {{ siteConfig.phoneDisplay || siteConfig.phone }}</a>
+        <a :href="`tel:${siteConfig.phone}`" class="btn-accent">Call {{ siteConfig.phoneDisplay }}</a>
       </div>
     </section>
 
@@ -122,7 +122,7 @@
         <p class="text-white/85">Schedule a discovery visit and we&apos;ll review layout options, finish palettes, and a phased budget that fits your goals.</p>
         <div class="flex flex-wrap gap-3 justify-center">
           <NuxtLink to="/contact" class="btn-primary">Book a Consultation</NuxtLink>
-          <a :href="`tel:${siteConfig.phone}`" class="btn-accent">Call {{ siteConfig.phoneDisplay || siteConfig.phone }}</a>
+          <a :href="`tel:${siteConfig.phone}`" class="btn-accent">Call {{ siteConfig.phoneDisplay }}</a>
         </div>
       </div>
     </section>
@@ -145,28 +145,17 @@ useBreadcrumbs([
     { name: 'Kitchen Remodeling', path: '/services/kitchen-remodeling' }
 ])
 
-const serviceSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    '@id': `${siteConfig.siteUrl}/services/kitchen-remodeling#service`,
-    name: 'Kitchen Remodeling',
-    description: 'Custom kitchen remodeling with modern layouts, cabinetry, countertops, lighting, and appliance integration.',
-    url: `${siteConfig.siteUrl}/services/kitchen-remodeling`,
-    serviceType: 'Kitchen Renovation',
-    provider: {
-        '@type': 'HomeAndConstructionBusiness',
-        name: siteConfig.siteName,
-        url: siteConfig.siteUrl,
-        telephone: siteConfig.phone
-    },
-    areaServed: siteConfig.serviceAreas.map(city => ({
-        '@type': 'City',
-        name: city,
-        containedInPlace: { '@type': 'State', name: 'Minnesota' }
-    }))
-}
+const { getServiceSchema } = useSchema()
 
 useHead({
-    script: [{ type: 'application/ld+json', innerHTML: JSON.stringify(serviceSchema) }]
+    script: [{
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify(getServiceSchema({
+            slug: 'kitchen-remodeling',
+            title: 'Kitchen Remodeling',
+            description: 'Custom kitchen remodeling with modern layouts, cabinetry, countertops, lighting, and appliance integration.',
+            serviceType: 'Kitchen Renovation'
+        }))
+    }]
 })
 </script>
