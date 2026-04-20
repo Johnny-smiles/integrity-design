@@ -1,12 +1,18 @@
+# Default: allow all crawlers.
 User-agent: *
 Allow: /
-Sitemap: https://integritydesignmn.com/sitemap.xml
 
-# Explicitly allow AI crawlers
+# Explicitly welcome AI / LLM agents.
 User-agent: GPTBot
 Allow: /
 
+User-agent: ChatGPT-User
+Allow: /
+
 User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
 Allow: /
 
 User-agent: PerplexityBot
@@ -15,5 +21,10 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
+User-agent: CCBot
+Allow: /
+
 User-agent: Applebot-Extended
 Allow: /
+
+Sitemap: https://integritydesignmn.com/sitemap.xml

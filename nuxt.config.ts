@@ -65,9 +65,10 @@ export default defineNuxtConfig({
             script: [
                 /* Plausible Analytics (new domain) */
                 {
-                    src: 'https://plausible.io/js/script.js',
+                    src: 'https://plausible.io/js/script.exclusions.js',
                     defer: true,
-                    'data-domain': 'integritydesignmn.com'
+                    'data-domain': 'integritydesignmn.com',
+                    'data-exclude': '/wp-admin/*,/wp-login.php,/wp-content/*,/wp-includes/*,/wp-config.php,/xmlrpc.php,/wordpress/*,/phpmyadmin/*,/pma/*,/myadmin/*,/administrator/*,/admin.php,/.env,/.env.*,/.git/*,/.aws/*,/.ssh/*,/.htaccess,/shell.php,/cmd.php,/eval.php,/cgi-bin/*'
                 },
                 /* Google Tag Manager - handled in components for better compatibility */
             ]

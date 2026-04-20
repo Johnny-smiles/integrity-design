@@ -2,7 +2,138 @@
   command = "npm run generate"
   publish = ".output/public"
 
-# SPA fallback (Nuxt static)
+# ─────────────────────────────────────────────────────────────
+# Bot / exploit-probe blocking
+# Netlify evaluates redirects top-down. Rules below fire BEFORE the SPA
+# catch-all, so common WordPress / phpMyAdmin / env-file / shell-probe
+# paths never reach the SPA fallback, never serve HTML + Plausible
+# script, never get counted as pageviews, never consume build bandwidth.
+# Returning 410 Gone (not 404) is the firmer signal to re-probing bots.
+# force = true ensures these win over any asset that might otherwise
+# match.
+
+# WordPress probes
+[[redirects]]
+  from   = "/wp-admin/*"
+  to     = "/404.html"
+  status = 410
+  force  = true
+[[redirects]]
+  from   = "/wp-login.php"
+  to     = "/404.html"
+  status = 410
+  force  = true
+[[redirects]]
+  from   = "/wp-content/*"
+  to     = "/404.html"
+  status = 410
+  force  = true
+[[redirects]]
+  from   = "/wp-includes/*"
+  to     = "/404.html"
+  status = 410
+  force  = true
+[[redirects]]
+  from   = "/wp-config.php"
+  to     = "/404.html"
+  status = 410
+  force  = true
+[[redirects]]
+  from   = "/xmlrpc.php"
+  to     = "/404.html"
+  status = 410
+  force  = true
+[[redirects]]
+  from   = "/wordpress/*"
+  to     = "/404.html"
+  status = 410
+  force  = true
+
+# phpMyAdmin / admin-console probes
+[[redirects]]
+  from   = "/phpmyadmin/*"
+  to     = "/404.html"
+  status = 410
+  force  = true
+[[redirects]]
+  from   = "/pma/*"
+  to     = "/404.html"
+  status = 410
+  force  = true
+[[redirects]]
+  from   = "/myadmin/*"
+  to     = "/404.html"
+  status = 410
+  force  = true
+[[redirects]]
+  from   = "/administrator/*"
+  to     = "/404.html"
+  status = 410
+  force  = true
+[[redirects]]
+  from   = "/admin.php"
+  to     = "/404.html"
+  status = 410
+  force  = true
+
+# Env / dotfile / secrets probes
+[[redirects]]
+  from   = "/.env"
+  to     = "/404.html"
+  status = 410
+  force  = true
+[[redirects]]
+  from   = "/.env.*"
+  to     = "/404.html"
+  status = 410
+  force  = true
+[[redirects]]
+  from   = "/.git/*"
+  to     = "/404.html"
+  status = 410
+  force  = true
+[[redirects]]
+  from   = "/.aws/*"
+  to     = "/404.html"
+  status = 410
+  force  = true
+[[redirects]]
+  from   = "/.ssh/*"
+  to     = "/404.html"
+  status = 410
+  force  = true
+[[redirects]]
+  from   = "/.htaccess"
+  to     = "/404.html"
+  status = 410
+  force  = true
+
+# Shell / RCE probes
+[[redirects]]
+  from   = "/shell.php"
+  to     = "/404.html"
+  status = 410
+  force  = true
+[[redirects]]
+  from   = "/cmd.php"
+  to     = "/404.html"
+  status = 410
+  force  = true
+[[redirects]]
+  from   = "/eval.php"
+  to     = "/404.html"
+  status = 410
+  force  = true
+
+# CGI probes
+[[redirects]]
+  from   = "/cgi-bin/*"
+  to     = "/404.html"
+  status = 410
+  force  = true
+
+# ─────────────────────────────────────────────────────────────
+# SPA fallback (Nuxt static). Keep LAST — everything above fires first.
 [[redirects]]
   from = "/*"
   to   = "/200.html"
@@ -31,7 +162,17 @@
 
 # Root icons / social images
 [[headers]]
+  for = "/favicon.svg"
+  [headers.values]
+  Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
   for = "/favicon.png"
+  [headers.values]
+  Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/og-image.svg"
   [headers.values]
   Cache-Control = "public, max-age=31536000, immutable"
 
@@ -63,3 +204,11 @@
   Referrer-Policy = "strict-origin-when-cross-origin"
   Permissions-Policy = "camera=(), microphone=(), geolocation=()"
   Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+
+# Canonical redirect for Netlify subdomain → custom domain
+# Uncomment and set the values once the client's custom domain is live.
+# [[redirects]]
+#   from = "/*"
+#   to   = "https://REPLACE_YOUR_DOMAIN/:splat"
+#   status = 301
+#   conditions = { Host = ["your-site.netlify.app"] }
